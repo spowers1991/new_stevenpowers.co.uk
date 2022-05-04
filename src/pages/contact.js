@@ -1,6 +1,6 @@
 import React from 'react';
-import ContentBox from './components/ContentBox'
-import Form from './components/Form'
+import ContentBox from '../components/ContentBox'
+import Form from '../components/Form'
 
 const Test = () => { 
     return (        
