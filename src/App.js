@@ -3,8 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import GoogleFonts from './fonts/GoogleFonts';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/home'
-import Contact from './pages/contact'
+import Home from './home'
+import Contact from './contact'
 
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
           <main>
             <Routes>
                 <Route path="/" element={<Home />} />              
-                <Route path="pages/home" element={<Home />} />  
-                <Route path="pages/contact" element={<Contact />}  />      
+                <Route path="home" element={<Home />} />  
+                <Route path="contact" element={<Contact />}  />      
             </Routes>
           </main>
         <Footer />    

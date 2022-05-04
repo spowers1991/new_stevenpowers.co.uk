@@ -1,6 +1,6 @@
 import React from 'react';
-import ContentBox from '../components/ContentBox'
-import Slider from '../components/Slider'
+import ContentBox from './components/ContentBox'
+import Slider from './components/Slider'
 
 const Home = () => {  
     return (        

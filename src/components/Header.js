@@ -15,7 +15,7 @@ const Header = () => {
                     <NavButton target="/" text="Projects" location={pathname} />
                 </li>
                 <li>
-                    <NavButton target="/pages/contact" text="Contact" location={pathname}/>
+                    <NavButton target="/contact" text="Contact" location={pathname}/>
                 </li>
             </ul>
         </div>    
