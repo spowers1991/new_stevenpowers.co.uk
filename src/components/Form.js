@@ -17,7 +17,7 @@ const Form = () => {
                 <input className="block w-full my-8 p-2 bg-black border-2 border-white border-dashed focus:border-solid focus:outline-none focus:placeholder:text-white" type="text" id="name" name="name" placeholder='Name' required />
                 <input className="block w-full my-8 p-2 bg-black border-2 border-white border-dashed focus:border-solid focus:outline-none focus:placeholder:text-white" type="text" id="email" name="email" placeholder='Email' required />
                 <textarea className="block w-full my-8 p-2 bg-black border-2 border-white border-dashed focus:border-solid focus:outline-none focus:placeholder:text-white" type="textarea" id="message" name="message" placeholder='Message' required/>
-                <input className="submit-button relative block w-full my-8 p-2  border-2 border-white text-white font-bold uppercase cursor-pointer hover:bg-white hover:text-black" type="submit" value="Send" />            
+                <button className="submit-button relative block w-full my-8 p-2  border-2 border-white text-white font-bold uppercase cursor-pointer hover:bg-white hover:text-black" type="submit" >Send</button>            
             </form>
         </div>           
     )
@@ -29,7 +29,7 @@ const encode = (data) => {
 
  function handleFormSubmit(event) {
     function formSubmitted(){
-        document.querySelector('.submit-button').classList.add('form-submitted', "bg-white", "pointer-events-none");
+        document.querySelector('.submit-button').classList.add('form-submitted', "bg-red", "pointer-events-none");
         document.querySelector('.submit-button').innerHTML = "Form Submitted";
     }
     event.preventDefault();
