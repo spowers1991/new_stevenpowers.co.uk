@@ -30,3 +30,12 @@
   height: 100%;
   object-fit: cover;
 }
+
+.progress {
+  height: 8px !important;
+  background: #000 !important;
+}
+
+.swiper-pagination-progressbar-fill {
+  background: #fff !important;
+}

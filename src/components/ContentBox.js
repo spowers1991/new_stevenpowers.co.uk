@@ -14,15 +14,14 @@ const ContentBox = (props) => {
 
     return (    
         <div className='mx-10 '>   
-            <div className={`overflow-hidden min-h-[550px] w-full bg-black transform ease-in-out transition-all duration-300`}>
+            <div className={`overflow-hidden min-h-[550px] w-full bg-black transform ease-in-out transition-all duration-300 shadow-lg`}>
                 <div className='relative top-0 w-full h-10 bg-white'></div>
 
                 <div className={`relative inset-0 transform ease-in-out transition-all duration-200 origin-left `}>
                     <div className='flex flex-row'>
                         <div className={`p-12 text-lg text-white ${props.form ? 'w-1/2' : 'w-full' } `}>
                             . . /<Heading title={props.title}/>
-                                    <CaptionReveal content={props.content} /> 
-                                    {console.log(props)}                                 
+                                    <CaptionReveal content={props.content} />                                  
                         </div>
                         {
                         props.form &&   
@@ -41,6 +40,7 @@ const ContentBox = (props) => {
 
                 <div className={`z-30 absolute bottom-0 w-full h-2`}>
                      <div className={`z-20 absolute bottom-0 w-full h-full bg-white transform ease-in-out transition-all duration-400 origin-left mx-auto ${state ? 'scale-x-100' : 'scale-x-[0%]'} `}></div>
+                     <div className="progress z-30"></div>
                 </div>
                 
             </div>     

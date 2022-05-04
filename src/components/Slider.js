@@ -1,26 +1,27 @@
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 import "../css/slider.css";
 
-// import required modules
-import { FreeMode, Mousewheel } from "swiper";
+import { FreeMode, Mousewheel, Pagination, Navigation } from "swiper";
 
 const Slider = () => { 
   return (
     <>
       <Swiper
+        pagination={{
+          el: '.progress',
+          type: "progressbar",
+        }}
         slidesPerView={3}
         spaceBetween={30}
         freeMode={true}
         mousewheel={true}
-        modules={[FreeMode, Mousewheel]}
+        modules={[FreeMode, Mousewheel, Pagination, Navigation]}
         className="mySwiper"
       >
         <SwiperSlide>Slide 1</SwiperSlide>
@@ -31,7 +32,7 @@ const Slider = () => {
         <SwiperSlide>Slide 6</SwiperSlide>
         <SwiperSlide>Slide 7</SwiperSlide>
         <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>        
       </Swiper>
     </>
   );
