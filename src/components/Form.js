@@ -12,7 +12,7 @@ const Form = () => {
 
     return (
         <div className={`min-h-[500px] flex flex-col items-center w-full bg-black text-white py-3 px-10 ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-700 delay-700`}>
-            <form className='w-full mr-16 my-auto' name="contact" method="POST" data-netlify="true"  onSubmit={handleFormSubmit}>
+            <form className='w-full mr-16 my-auto' name="contact" method="POST" onSubmit={handleFormSubmit}>
                 <input type="hidden" name="contact" value="contact" />
                 <input className="block w-full my-8 p-2 bg-black border-2 border-white border-dashed focus:border-solid focus:outline-none focus:placeholder:text-white" type="text" id="name" name="name" placeholder='Name' required />
                 <input className="block w-full my-8 p-2 bg-black border-2 border-white border-dashed focus:border-solid focus:outline-none focus:placeholder:text-white" type="text" id="email" name="email" placeholder='Email' required />
