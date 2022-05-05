@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
           
-        <div className='flex w-full  text-white py-10'>
+        <header className='flex w-full  text-white py-10'>
             <ul className='ml-auto flex gap-9 pr-10'>
                 <li>
                     <NavButton target="/" text="Projects" location={pathname} />
@@ -18,7 +18,7 @@ const Header = () => {
                     <NavButton target="/pages/contact" text="Contact" location={pathname}/>
                 </li>
             </ul>
-        </div>    
+        </header>    
                    
     )
 }
