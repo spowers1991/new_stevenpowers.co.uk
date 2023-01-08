@@ -1,0 +1,19 @@
+.progress {
+    height: 4px !important;
+    background: #000 !important;
+    border-radius: 10px !important;
+  }
+  
+  .swiper-pagination-progressbar-fill {
+    background: #fff !important;
+    border-radius: 10px !important;
+  }
+  
+  .swiper-button-prev, .swiper-button-next {
+    color: #000 !important;
+  }
+  
+  .swiper-button-disabled {
+    color: #fff !important;
+    opacity: 100 !important;
+  }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation  } from 'react-router-dom';
-import NavButton from './NavButton';
+import Button from './utility/Button';
 
 
 const Header = () => {  
@@ -9,13 +9,13 @@ const Header = () => {
 
     return (
           
-        <header className='flex w-full  text-white py-10'>
-            <ul className='ml-auto flex gap-9 pr-10'>
+        <header className='flex w-full text-white py-10 max-w-5xl px-10 mx-auto'>
+            <ul className='ml-auto flex gap-9 '>
                 <li>
-                    <NavButton target="/" text="Projects" location={pathname} />
+                    <Button target="/" text="Home" large={true} location={pathname} />
                 </li>
                 <li>
-                    <NavButton target="/pages/contact" text="Contact" location={pathname}/>
+                    <Button target="/pages/contact" text="Contact" large={true} location={pathname}/>
                 </li>
             </ul>
         </header>    

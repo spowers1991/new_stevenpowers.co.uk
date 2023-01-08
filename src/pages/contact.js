@@ -1,13 +1,13 @@
 import React from 'react';
-import ContentBox from '../components/ContentBox'
-import Form from '../components/Form'
+import Page from '../components/Page'
+import Form from '../components/blocks/Form/Index'
 
-const Test = () => { 
+const Contact = () => { 
     return (        
         <div>
-            <ContentBox title="Contact" content="Fill out the form..." form={<Form/>}/>
+            <Page title="Contact" caption="Fill out the form..." blocks={<Form/>}/>
         </div>           
     )
 }
 
-export default Test;
+export default Contact;
