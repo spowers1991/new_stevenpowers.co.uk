@@ -36,9 +36,9 @@ function SwiperSyncedKeyCallback(index) {
 return (  
     <div>  
         <div className={`mt-8 ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300`}>
-            <div className="max-w-5xl mx-auto px-10 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-x-8 gap-y-16 md:gap-y-16">
+            <div className="max-w-5xl mx-auto px-10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-8 gap-y-16 md:gap-y-16">
                 {posts && posts.map((post, index) => (
-                    <div className="group flex flex-col cursor-pointer" onClick={() => HandlePopUp(index)} key={index} role="presentation">
+                    <div id={'post-'+index} className="group flex flex-col cursor-pointer -mt-2 pt-4" onClick={() => HandlePopUp(index)} key={index} role="presentation">
                         <div className="relative overflow-hidden mb-6">
                             <div className={`rounded absolute w-full h-full bg-black duration-300 opacity-0 group-hover:opacity-30 ${(open && index === SwiperSyncedKey && 'opacity-30')}`} />
                             <img className="w-full rounded" src="https://via.placeholder.com/224x224" alt="" />
