@@ -15,6 +15,9 @@ const Header = () => {
                     <Button target="/" text="Home" large={true} location={pathname} />
                 </li>
                 <li>
+                    <Button target="/pages/webgl" text="WebGL" large={true} location={pathname}/>
+                </li>
+                <li>
                     <Button target="/pages/contact" text="Contact" large={true} location={pathname}/>
                 </li>
             </ul>
