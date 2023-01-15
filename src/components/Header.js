@@ -12,7 +12,7 @@ const Header = () => {
         <header className='flex w-full text-white py-10 max-w-5xl px-10 mx-auto'>
             <ul className='ml-auto flex gap-9 '>
                 <li>
-                    <Button target="/" text="Home" large={true} location={pathname} />
+                    <Button target="/" text="Json data" large={true} location={pathname} />
                 </li>
                 <li>
                     <Button target="/pages/webgl" text="WebGL" large={true} location={pathname}/>

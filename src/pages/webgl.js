@@ -5,7 +5,7 @@ import WebGL from '../components/blocks/WebGL/index';
 const WebGl = () => {  
     return (        
         <div>     
-            <Page title="Solar System in WebGL" caption="Here is some simple post data that we have fetched from an external API..." blocks={<WebGL />}/>
+            <Page title="Solar System in WebGL" caption="Here is a WebGL Solar System I created and imported into React..." blocks={<WebGL />}/>
         </div>           
     )
 }

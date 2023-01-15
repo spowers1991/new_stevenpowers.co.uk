@@ -8,6 +8,10 @@ body {
   font-family: 'Short Stack', cursive;
 }
 
+.close-icon:hover {
+  -webkit-text-stroke: 4px solid green;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
