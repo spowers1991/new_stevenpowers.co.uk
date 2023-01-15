@@ -11,6 +11,14 @@
   
   .swiper-button-prev, .swiper-button-next {
     color: #000 !important;
+    transition: 0.3s;
+  }
+
+  .swiper-button-prev:hover{
+    color: #fff !important;
+  }
+  .swiper-button-next:hover {
+    color: #fff !important;
   }
 
   @media only screen and (max-width: 600px) {
