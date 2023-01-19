@@ -13,7 +13,7 @@ const Home = () => {
 
     return (        
         <div>     
-            <Page title="Simple Post Data" caption="Here is some simple post data that we have fetched from an external API..." blocks={<PostsGrid postData={posts && posts}/>}/>
+            <Page title="Simple Post Data" caption="Here is some simple post data that we have fetched..." blocks={<PostsGrid postData={posts && posts}/>}/>
         </div>           
     )
 }
