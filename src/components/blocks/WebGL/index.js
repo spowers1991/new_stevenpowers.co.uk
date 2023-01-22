@@ -19,20 +19,7 @@ const WebGL = () => {
     codeUrl: "/build/solar-system-build.wasm.br",
   });
 
-  const [loadingPercentage, setLoadingPercentage] = useState(0);
-
-  useEffect(() => {
-    let intervalId = null;
-    if (loadingProgression < 1) {
-      intervalId = setTimeout(() => {
-        setLoadingPercentage(loadingPercentage + 1);
-      }, 50);
-    } else {
-      setLoadingPercentage(100)
-      clearTimeout(intervalId);
-    }
-    return () => clearTimeout(intervalId);
-  }, [loadingPercentage, loadingProgression]);
+  const loadingPercentage = Math.round(loadingProgression * 100);
 
     
   const location = useLocation();
