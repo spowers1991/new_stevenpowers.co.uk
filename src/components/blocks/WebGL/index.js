@@ -26,16 +26,13 @@ const WebGL = () => {
       setState(true)
   }, [location]);
 
-
   const [loadingPercentage, SetLoadingPercentage] = useState(0)
-  
 
   useEffect(() => {
     const interval = setInterval(() => {
-      loadingProgression < 1 &&
-      SetLoadingPercentage(Math.round(loadingProgression * 100))
-      console.log(loadingPercentage)
-  }, 500);
+      loadingPercentage < 99 &&
+      SetLoadingPercentage(loadingPercentage+1)
+  }, 150);
 
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
