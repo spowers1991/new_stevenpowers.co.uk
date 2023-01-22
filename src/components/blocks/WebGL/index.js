@@ -28,10 +28,11 @@ const WebGL = () => {
         setLoadingPercentage(loadingPercentage + 1);
       }, 50);
     } else {
+      setLoadingPercentage(100)
       clearTimeout(intervalId);
     }
     return () => clearTimeout(intervalId);
-  }, [loadingPercentage]);
+  }, [loadingPercentage, loadingProgression]);
 
     
   const location = useLocation();
