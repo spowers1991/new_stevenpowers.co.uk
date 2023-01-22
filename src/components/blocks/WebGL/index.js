@@ -53,7 +53,8 @@ const WebGL = () => {
         <p>
           New Target: 0-8 (Planets in order from the Sun. The Sun mapped to 0.) <br/>
           Panning & Zooming: W,A,S,D <br/>
-          Pitch & Yaw: Q, E  <br/>
+          Tilt camera: Q, E  <br/>
+          Increase camera speed: SHIFT (Hold)
         </p>
       </div>
       <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10'} overflow-hidden duration-300 transform`}>
