@@ -30,11 +30,14 @@ const WebGL = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      loadingPercentage < 99 &&
-      SetLoadingPercentage(loadingPercentage+1)
-      loadingProgression === 1 &&
-      SetLoadingPercentage(100)
-  }, 150);
+      if(loadingProgression === 1){
+        clearInterval(interval);
+        SetLoadingPercentage(100)
+      } else {
+        loadingPercentage < 99 &&
+        SetLoadingPercentage(loadingPercentage+1)
+      }
+    }, 150);
 
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
