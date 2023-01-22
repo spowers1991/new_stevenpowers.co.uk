@@ -32,7 +32,7 @@ const WebGL = () => {
     const interval = setInterval(() => {
       loadingPercentage < 99 &&
       SetLoadingPercentage(loadingPercentage+1)
-      loadingProgression == 1 &&
+      loadingProgression === 1 &&
       SetLoadingPercentage(100)
   }, 150);
 
