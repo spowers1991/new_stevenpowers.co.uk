@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { Unity, useUnityContext } from "react-unity-webgl";
 
+
 const WebGL = () => {  
 
   const [fullscreen, setFullScreen] = useState(false)
@@ -11,14 +12,28 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
-  const { unityProvider, isLoaded } = useUnityContext({
+  const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
     codeUrl: "/build/solar-system-build.wasm.br",
   });
 
-  const [loadingPercentage, setLoadingPercentage] = useState(0); 
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
+
+  useEffect(() => {
+    let intervalId = null;
+    if (loadingProgression < 1) {
+      intervalId = setTimeout(() => {
+        setLoadingPercentage(loadingPercentage + 1);
+      }, 50);
+    } else {
+      clearTimeout(intervalId);
+    }
+    return () => clearTimeout(intervalId);
+  }, [loadingPercentage]);
+
+    
   const location = useLocation();
   const [state, setState] = useState(false)
 
@@ -47,7 +62,7 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" onProgress={(progress) => setLoadingPercentage(Math.round(progress * 100))} unityProvider={unityProvider} />
+          <Unity className="w-full h-full" unityProvider={unityProvider} />
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
