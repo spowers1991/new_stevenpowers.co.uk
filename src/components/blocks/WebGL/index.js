@@ -12,21 +12,33 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
-  const { unityProvider, loadingProgression } = useUnityContext({
+  const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
     codeUrl: "/build/solar-system-build.wasm.br",
   });
-
+    
   const location = useLocation();
   const [state, setState] = useState(false)
 
   useEffect(() => {
       setState(true)
   }, [location]);
+
+
+  const [loadingPercentage, SetLoadingPercentage] = useState(0)
   
-  const loadingPercentage = Math.round(loadingProgression * 100);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadingProgression < 1 &&
+      SetLoadingPercentage(Math.round(loadingProgression * 100))
+      console.log(loadingPercentage)
+  }, 500);
+
+    return () => clearInterval(interval);
+  }, [loadingProgression, loadingPercentage]);
 
   return (
   <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10 mx-auto'}  ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300 px-10`}>
@@ -43,8 +55,8 @@ const WebGL = () => {
         </p>
       </div>
       <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10'} overflow-hidden duration-300 transform`}>
-          <div className={`${loadingPercentage === 1 ? 'opacity-0' : 'opacity-100'} fixed w-full h-full  bg-black text-white text-left pointer-events-none duration-[1s] delay-[3s] flex item-center`}>          
-              <span className="m-auto">Loading... ({loadingPercentage}%) </span>       
+          <div className={`${isLoaded ? 'opacity-0' : 'opacity-100'} fixed w-full h-full  bg-black text-white text-left pointer-events-none duration-[1s] delay-[3s] flex item-center`}>          
+              <span className="m-auto">Loading... ({loadingPercentage}%) </span>     
           </div>
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
