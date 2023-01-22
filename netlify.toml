@@ -3,21 +3,25 @@
   [headers.values]
     Content-Encoding = "br"
     Content-Type = "application/octet-stream"
+    Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
   for = "/build/*.wasm.br"
   [headers.values]
     Content-Encoding = "br"
     Content-Type = "application/wasm"
+    Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
   for = "/build/*.js"
   [headers.values]
     Content-Encoding = "js"
     Content-Type = "application/javascript"
+    Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
   for = "/build/*.js.br"
   [headers.values]
     Content-Encoding = "br"
     Content-Type = "application/javascript"
+    Cache-Control = "no-cache, no-store, must-revalidate"
