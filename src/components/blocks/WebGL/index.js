@@ -42,7 +42,7 @@ const WebGL = () => {
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
 
-  if (location.pathname.includes('/pages/webgl/')) {
+  if (location.pathname.includes('webgl')) {
     console.log('webgl!')
   }
 
