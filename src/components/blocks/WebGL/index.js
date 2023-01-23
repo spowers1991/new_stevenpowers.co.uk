@@ -47,7 +47,7 @@ const WebGL = () => {
     return () => {
         setState(false);
         if (isLoaded) {
-            Unity.Unmount();
+          unityContext.on("quitted", function () {});
         }
     };
 }, [location, isLoaded]);
