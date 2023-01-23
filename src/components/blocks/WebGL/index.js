@@ -42,9 +42,6 @@ const WebGL = () => {
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
 
-  if (location.pathname.includes('webgl')) {
-    console.log('webgl!')
-  }
 
   return (
   <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10 mx-auto'}  ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300 px-10`}>
@@ -68,7 +65,9 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={unityProvider} />
+          {location.pathname.includes('webgl') &&
+            <Unity className="w-full h-full" unityProvider={unityProvider} />
+          }
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
