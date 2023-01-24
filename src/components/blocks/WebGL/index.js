@@ -46,9 +46,10 @@ const WebGL = () => {
   useEffect(() => {
     return () => {
       unload();
-      window.addEventListener('keydown', unload);
+      unityProvider.quitUnityInstance()
+      window.removeEventListener('keypress', unload)
     }
-  }, [unload])
+  }, [unityProvider,unload])
 
 
   return (
