@@ -45,15 +45,16 @@ const WebGL = () => {
 
   useEffect(() => {
     async function handleClickBack() {
+      console.log('unload')
       await unload();
       // Ready to navigate to another page.
     }
     return () => {
-      isLoaded &&
+      location.pathname.includes('webgl') &&
       handleClickBack()
       window.removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload])
+  }, [location, isLoaded, unload])
   
 
   return (
