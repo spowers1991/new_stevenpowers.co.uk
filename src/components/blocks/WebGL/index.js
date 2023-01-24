@@ -45,11 +45,12 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      unload();
+      !location.pathname.includes('webgl') &&   
       unityProvider.quitUnityInstance()
       window.removeEventListener('keypress', unload)
+      unload();
     }
-  }, [unityProvider,unload])
+  }, [location, unityProvider,unload])
 
 
   return (
