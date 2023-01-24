@@ -43,9 +43,16 @@ const WebGL = () => {
   }, [loadingProgression, loadingPercentage]);
 
 
+
+
+  async function handleUnload() {
+    await unload();
+    // Ready to navigate to another page.
+  }
+
   useEffect(() => {
     return () => {
-      unload();
+      handleUnload();
       window.removeEventListener('keypress', unload)
     }
   }, [unload])
