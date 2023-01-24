@@ -45,9 +45,8 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      // This function will fire when the component is removed from the DOM
       unload();
-      console.log('left!')
+      window.removeEventListener('keypress', unload)
     }
   }, [unload])
 
