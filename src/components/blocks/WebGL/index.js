@@ -45,7 +45,7 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      isLoaded &&
+      !location.pathname.includes('webgl') &&
       unload();
       window.removeEventListener('keypress', unload)
     }
