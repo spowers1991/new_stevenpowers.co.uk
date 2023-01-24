@@ -44,7 +44,7 @@ const WebGL = () => {
 
     useEffect(() => {
       if(WebGLInput){
-          WebGLInput.captureAllKeyboardInput = true;
+          WebGLInput.captureAllKeyboardInput = false;
       }
   }, [WebGLInput]);
 
