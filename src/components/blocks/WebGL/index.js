@@ -45,12 +45,12 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      !location.pathname.includes('webgl') &&   
+      loadingPercentage===100 && !location.pathname.includes('webgl') &&   
       unityProvider.quitUnityInstance()
       window.removeEventListener('keypress', unload)
       unload();
     }
-  }, [location, unityProvider,unload])
+  }, [location, unityProvider,unload,loadingPercentage])
 
 
   return (
