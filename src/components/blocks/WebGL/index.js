@@ -14,21 +14,23 @@ const WebGL = () => {
   
   const location = useLocation();
   const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    return () => {
-      setIsMounted(false);
-    };
-  }, [location]);
-
+  const [abortController] = useState(new AbortController());
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
     codeUrl: "/build/solar-system-build.wasm.br",
+    signal: '/build/solar-system-build.loader.js'
   }, [isMounted]);
     
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      setIsMounted(false);
+      abortController.abort();
+    };
+  }, [location, abortController]);
 
   const [state, setState] = useState(false)
 
