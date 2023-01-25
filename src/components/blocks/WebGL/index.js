@@ -44,16 +44,8 @@ const WebGL = () => {
 
 
   useEffect(() => {
-    unityProvider.unityConfig.loaderUrl = "/build/solar-system-build.loader.js"
-    unityProvider.unityConfig.dataUrl= "/build/solar-system-build.data.br"
-    unityProvider.unityConfig.frameworkUrl= "/build/solar-system-build.framework.js.br"
-    unityProvider.unityConfig.codeUrl= "/build/solar-system-build.wasm.br"
     return () => {
-      unityProvider.unityConfig.loaderUrl = undefined
-      unityProvider.unityConfig.dataUrl = undefined
-      unityProvider.unityConfig.frameworkUrl = undefined
-      unityProvider.unityConfig.codeUrl = undefined
-      console.log(unityProvider)
+      console.log(state, unityProvider)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
