@@ -45,6 +45,7 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
+      state &&
       console.log(state, unityProvider, Unity)
       isLoaded &&
       unload();
@@ -75,8 +76,10 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
+          { state &&
           <Unity className="w-full h-full" unityProvider={unityProvider}/>
-      </div>
+}  
+        </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
             <div className={`bg-black absolute bottom-0 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-100 transition transition-gpu duration-200`}/>
