@@ -50,7 +50,7 @@ const WebGL = () => {
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [isLoaded, unload, removeEventListener, unityProvider])
 
 
   return (
