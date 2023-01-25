@@ -45,16 +45,12 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      unityProvider.unityConfig.loaderUrl = 'null'
-      unityProvider.unityConfig.dataUrl = 'null'
-      unityProvider.unityConfig.frameworkUrl = 'null'
-      unityProvider.unityConfig.codeUrl = 'null'
-      location.reload()
+      console.log(unityProvider)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [location, isLoaded, unload, removeEventListener, unityProvider])
+  }, [isLoaded, unload, removeEventListener])
 
 
   return (
