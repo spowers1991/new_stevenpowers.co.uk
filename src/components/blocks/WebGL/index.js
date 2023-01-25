@@ -47,6 +47,7 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
+      console.log(abortController)
       abortController.abort()
       isLoaded &&
       unload();
