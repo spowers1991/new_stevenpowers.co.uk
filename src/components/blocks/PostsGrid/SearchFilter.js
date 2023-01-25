@@ -1,8 +1,16 @@
-import React, { useRef} from 'react';
+import React, { useRef, useEffect} from 'react';
 
 const SearchFilter = ({ searchTerm, setSearchTerm, filteredData, setFilteredData, posts }) => {
     
     const inputRef = useRef(null);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            window.removeEventListener('keypress', inputRef)
+            console.log('rest keypress')
+        }, 1000);
+        return () => clearInterval(interval);
+      }, [searchTerm]);
 
     return (
         <div className="max-w-5xl mx-auto px-10 mb-5">
