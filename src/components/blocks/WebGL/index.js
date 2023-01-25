@@ -13,10 +13,10 @@ const WebGL = () => {
   }
 
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
+    loaderUrl: loaderUrl && "/build/solar-system-build.loader.js",
+    dataUrl: dataUrl && "/build/solar-system-build.data.br",
+    frameworkUrl: frameworkUrl && "/build/solar-system-build.framework.js.br",
+    codeUrl: codeUrl && "/build/solar-system-build.wasm.br",
   });
     
   const location = useLocation();
