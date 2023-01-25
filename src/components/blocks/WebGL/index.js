@@ -15,16 +15,16 @@ const WebGL = () => {
   const location = useLocation();
   const [state, setState] = useState(false)
 
-  useEffect(() => {
-      setState(true)
-  }, [location]);
-
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: state ? "/build/solar-system-build.loader.js" : '',
     dataUrl: state ?  "/build/solar-system-build.data.br" : '',
     frameworkUrl: state ? "/build/solar-system-build.framework.js.br" : '',
     codeUrl: state ? "/build/solar-system-build.wasm.br" : '',
   });
+
+  useEffect(() => {
+      setState(true)
+  }, [location]);
 
   const [loadingPercentage, SetLoadingPercentage] = useState(0)
 
