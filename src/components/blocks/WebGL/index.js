@@ -12,7 +12,7 @@ const WebGL = () => {
     setFullScreen(false)
   }
   
-  const [abortController, setAbortController] = useState(new AbortController());
+  const [abortController] = useState(new AbortController());
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
