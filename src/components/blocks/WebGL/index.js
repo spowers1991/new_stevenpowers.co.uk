@@ -11,27 +11,15 @@ const WebGL = () => {
     fullscreen !== false &&
     setFullScreen(false)
   }
-  
-  const location = useLocation();
-  const [isMounted, setIsMounted] = useState(false);
-  const [abortController] = useState(new AbortController());
+
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
     codeUrl: "/build/solar-system-build.wasm.br",
-    signal: '/build/solar-system-build.loader.js'
-  }, [isMounted]);
+  });
     
-
-  useEffect(() => {
-    setIsMounted(true);
-    return () => {
-      setIsMounted(false);
-      abortController.abort();
-    };
-  }, [location, abortController]);
-
+  const location = useLocation();
   const [state, setState] = useState(false)
 
   useEffect(() => {
@@ -57,12 +45,12 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      console.log(isMounted, unityProvider)
+      console.log(state, unityProvider, Unity)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener, isMounted, unityProvider])
+  }, [isLoaded, unload, removeEventListener, state, unityProvider])
 
 
   return (
