@@ -44,13 +44,12 @@ const WebGL = () => {
 
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      !location.pathname.includes('webgl') &&
+    return () => {
+      isLoaded &&
       unload();
       window.removeEventListener('keypress', unload)
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [location, isLoaded, unload]);
+    }
+  }, [isLoaded, unload])
 
 
   return (
