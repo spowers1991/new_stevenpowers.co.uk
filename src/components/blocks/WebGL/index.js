@@ -49,12 +49,12 @@ const WebGL = () => {
       unityProvider.unityConfig.dataUrl = 'null'
       unityProvider.unityConfig.frameworkUrl = 'null'
       unityProvider.unityConfig.codeUrl = 'null'
-      console.log(unityProvider.unityConfig)
+      location.reload()
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener, unityProvider])
+  }, [location, isLoaded, unload, removeEventListener, unityProvider])
 
 
   return (
