@@ -47,7 +47,7 @@ const WebGL = () => {
     return () => {
       console.log(state, unityProvider, Unity)
       isLoaded &&
-      Unity.unload();
+      unload();
       removeEventListener('keypress', unload)
     }
   }, [isLoaded, unload, removeEventListener, state, unityProvider])
