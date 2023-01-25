@@ -42,19 +42,15 @@ const WebGL = () => {
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
 
+
   useEffect(() => {
     const interval = setInterval(() => {
-      if(location.pathname.includes('webgl')) {
-        clearInterval(interval);
-      } else {
-        console.log(location.pathname)
-        unload();
-        window.removeEventListener('keypress', unload);
-      }
-    }, 150);
-
+      isLoaded &&
+      unload();
+      window.removeEventListener('keypress', unload)
+    }, 1000);
     return () => clearInterval(interval);
-  }, [location, unload]);
+  }, [isLoaded, unload]);
 
 
   return (
