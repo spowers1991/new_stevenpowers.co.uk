@@ -11,15 +11,25 @@ const WebGL = () => {
     fullscreen !== false &&
     setFullScreen(false)
   }
+  
+  const location = useLocation();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      setIsMounted(false);
+    };
+  }, [location]);
 
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
-    loaderUrl: loaderUrl && "/build/solar-system-build.loader.js",
-    dataUrl: dataUrl && "/build/solar-system-build.data.br",
-    frameworkUrl: frameworkUrl && "/build/solar-system-build.framework.js.br",
-    codeUrl: codeUrl && "/build/solar-system-build.wasm.br",
-  });
+    loaderUrl: "/build/solar-system-build.loader.js",
+    dataUrl: "/build/solar-system-build.data.br",
+    frameworkUrl: "/build/solar-system-build.framework.js.br",
+    codeUrl: "/build/solar-system-build.wasm.br",
+  }, [isMounted]);
     
-  const location = useLocation();
+
   const [state, setState] = useState(false)
 
   useEffect(() => {
@@ -45,12 +55,12 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      console.log(state, unityProvider, Unity)
+      console.log(isMounted, unityProvider)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener, state, unityProvider])
+  }, [isLoaded, unload, removeEventListener, isMounted, unityProvider])
 
 
   return (
@@ -75,7 +85,7 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={state && unityProvider}/>
+          <Unity className="w-full h-full" unityProvider={unityProvider}/>
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
