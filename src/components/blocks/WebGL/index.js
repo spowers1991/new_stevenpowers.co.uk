@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { Unity, useUnityContext } from "react-unity-webgl";
-
+import axios from 'axios';
 
 const WebGL = () => {  
 
@@ -12,13 +12,13 @@ const WebGL = () => {
     setFullScreen(false)
   }
   
-  const [abortController] = useState(new AbortController());
+  const [source] = useState(axios.CancelToken.source());
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
     codeUrl: "/build/solar-system-build.wasm.br",
-    signal: abortController.signal,
+    cancelToken: source.token
   });
     
   const location = useLocation();
@@ -47,13 +47,30 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      console.log(abortController)
-      abortController.abort()
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener, abortController])
+  }, [isLoaded, unload, removeEventListener])
+
+
+  useEffect(() => {
+    if (!isLoaded) {
+      axios.get('/build/solar-system-build.data.br', { cancelToken: source.token }).catch(function (thrown) {
+        if (axios.isCancel(thrown)) {
+          console.log('Request canceled', thrown.message);
+        } else {
+          // handle error
+        }
+      });
+    }
+    return () => {
+      source.cancel();
+    }
+  }, [isLoaded, source]);
+
+
+
 
 
   return (
