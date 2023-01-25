@@ -12,7 +12,7 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener, disabledCanvasEvents } = useUnityContext({
+  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
@@ -45,12 +45,12 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      console.log(disabledCanvasEvents)
+      console.log(unityProvider)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener, disabledCanvasEvents])
+  }, [isLoaded, unload, removeEventListener, unityProvider])
 
 
   return (
@@ -75,7 +75,7 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={unityProvider} disabledCanvasEvents={["dragstart", "scroll"]}/>
+          <Unity className="w-full h-full" unityProvider={unityProvider}/>
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
