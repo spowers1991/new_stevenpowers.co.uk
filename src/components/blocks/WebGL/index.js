@@ -46,7 +46,7 @@ const WebGL = () => {
   useEffect(() => {
     return () => {
       unityProvider.unityConfig = undefined
-      window.location.reload();
+      console.log(unityProvider)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
