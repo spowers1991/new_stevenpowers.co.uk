@@ -12,7 +12,7 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
-  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
+  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
@@ -47,9 +47,9 @@ const WebGL = () => {
     return () => {
       isLoaded &&
       unload();
-      window.removeEventListener('keypress', unload)
+      removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload])
+  }, [isLoaded, unload, removeEventListener])
 
 
   return (
