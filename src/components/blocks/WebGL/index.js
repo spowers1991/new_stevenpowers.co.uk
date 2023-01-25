@@ -12,15 +12,17 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
+  const [state, setState] = useState(false)
+
   const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
+    dataUrl: state ? "/build/solar-system-build.data.br" : '',
     frameworkUrl: "/build/solar-system-build.framework.js.br",
     codeUrl: "/build/solar-system-build.wasm.br",
   });
     
   const location = useLocation();
-  const [state, setState] = useState(false)
+
 
   useEffect(() => {
       setState(true)
