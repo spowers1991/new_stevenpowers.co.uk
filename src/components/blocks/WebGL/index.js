@@ -48,7 +48,6 @@ const WebGL = () => {
   useEffect(() => {
     return () => {
       abortController.abort()
-      setAbortController(new AbortController());
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
