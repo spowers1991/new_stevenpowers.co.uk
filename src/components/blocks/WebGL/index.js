@@ -45,9 +45,9 @@ const WebGL = () => {
 
   useEffect(() => {
     unityProvider.unityConfig.loaderUrl = "/build/solar-system-build.loader.js"
-    dataUrl= "/build/solar-system-build.data.br"
-    frameworkUrl= "/build/solar-system-build.framework.js.br"
-    codeUrl= "/build/solar-system-build.wasm.br"
+    unityProvider.unityConfig.dataUrl= "/build/solar-system-build.data.br"
+    unityProvider.unityConfig.frameworkUrl= "/build/solar-system-build.framework.js.br"
+    unityProvider.unityConfig.codeUrl= "/build/solar-system-build.wasm.br"
     return () => {
       unityProvider.unityConfig.loaderUrl = undefined
       unityProvider.unityConfig.dataUrl = undefined
