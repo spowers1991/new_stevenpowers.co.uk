@@ -44,8 +44,9 @@ const WebGL = () => {
 
 
   useEffect(() => {
+    unityProvider.unityConfig.loaderUrl = "/build/solar-system-build.loader.js"
     return () => {
-      unityProvider.unityConfig = undefined
+      unityProvider.unityConfig.loaderUrl = undefined
       console.log(unityProvider)
       isLoaded &&
       unload();
