@@ -42,20 +42,20 @@ const WebGL = () => {
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
 
-
   useEffect(() => {
-    async function handleClickBack() {
-      console.log('unload')
-      await unload();
-      // Ready to navigate to another page.
-    }
-    return () => {
-      location.pathname.includes('webgl') &&
-      handleClickBack()
-      window.removeEventListener('keypress', unload)
-    }
-  }, [location, isLoaded, unload])
-  
+    const interval = setInterval(() => {
+      if(location.pathname.includes('webgl')) {
+        clearInterval(interval);
+      } else {
+        console.log(location.pathname)
+        unload();
+        window.removeEventListener('keypress', unload);
+      }
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, [location, unload]);
+
 
   return (
   <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10 mx-auto'}  ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300 px-10`}>
