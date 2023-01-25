@@ -56,7 +56,7 @@ const WebGL = () => {
 
   useEffect(() => {
     if (!isLoaded) {
-      axios.get('/build/solar-system-build.data.br', { cancelToken: source.token }).catch(function (thrown) {
+      axios.get('/build/solar-system-build.loader.js', { cancelToken: source.token }).catch(function (thrown) {
         if (axios.isCancel(thrown)) {
           console.log('Request canceled', thrown.message);
         } else {
