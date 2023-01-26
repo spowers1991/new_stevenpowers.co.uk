@@ -68,7 +68,7 @@ const WebGL = (props) => {
             X
           </div>
           {props.unityProvider &&
-            <Unity className="w-full h-full" unityProvider={props.unityProvider && props.unityProvider}/>
+            <Unity className="w-full h-full" unityProvider={props.unityProvider}/>
           }
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
