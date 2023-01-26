@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
-import { Unity, useUnityContext } from "react-unity-webgl";
+import { Unity } from "react-unity-webgl";
 
 
-const WebGL = () => {  
+const WebGL = (props) => {  
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -11,13 +11,6 @@ const WebGL = () => {
     fullscreen !== false &&
     setFullScreen(false)
   }
-
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
     
   const location = useLocation();
   const [state, setState] = useState(false)
@@ -30,7 +23,7 @@ const WebGL = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(loadingProgression === 1){
+      if(props.loadingProgression === 1){
         clearInterval(interval);
         SetLoadingPercentage(100)
       } else {
@@ -40,17 +33,16 @@ const WebGL = () => {
     }, 150);
 
     return () => clearInterval(interval);
-  }, [loadingProgression, loadingPercentage]);
+  }, [props.loadingProgression, loadingPercentage]);
 
 
   useEffect(() => {
     return () => {
-      console.log(state, unityProvider)
-      isLoaded &&
-      unload();
-      removeEventListener('keypress', unload)
+      console.log(state)
+      props.isLoaded &&
+      props.unload();
     }
-  }, [isLoaded, unload, removeEventListener, state, unityProvider])
+  }, [props.isLoaded, props.unload, state, props])
 
 
   return (
@@ -69,13 +61,15 @@ const WebGL = () => {
         </p>
       </div>
       <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10'} overflow-hidden duration-300 transform`}>
-          <div className={`${isLoaded ? 'opacity-0' : 'opacity-100'} fixed w-full h-full  bg-black text-white text-left pointer-events-none duration-[1s] delay-[3s] flex item-center`}>          
+          <div className={`${props.isLoaded ? 'opacity-0' : 'opacity-100'} fixed w-full h-full  bg-black text-white text-left pointer-events-none duration-[1s] delay-[3s] flex item-center`}>          
               <span className="m-auto">Loading... ({loadingPercentage}%) </span>     
           </div>
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={unityProvider}/>
+          {props.unityProvider &&
+            <Unity className="w-full h-full" unityProvider={props.unityProvider && props.unityProvider}/>
+          }
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
