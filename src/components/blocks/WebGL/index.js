@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom'; 
-import { Unity, useUnityContext } from "react-unity-webgl";
 
-
-const WebGL = () => {  
+const WebGL = (props) => {  
+  
+  const { Unity, useUnityContext } = useContext(props.UnityContext);
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -45,17 +45,13 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      const scripts = document.getElementsByTagName('script')
-      const scriptsArray = [...scripts]
-      scriptsArray.map((script) => (
-        script.src.includes("solar-system-build.framework.js") &&
-        script.remove()
-      ))
+      !isLoaded &&
+      props.cleanUnity(true)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [isLoaded, unload, removeEventListener, props])
 
 
   return (
@@ -80,7 +76,7 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={unityProvider}/>
+          <Unity className="w-full h-full" unityProvider={unityProvider} />
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
