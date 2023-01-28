@@ -12,7 +12,6 @@ function App() {
   const { unload } = useUnityContext({  });
 
   async function UnityUnload() {
-    !window.location.href.includes('webgl') &&
     await unload();
     // Ready to navigate to another page.
   }
