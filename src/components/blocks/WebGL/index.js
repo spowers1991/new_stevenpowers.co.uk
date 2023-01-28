@@ -44,6 +44,9 @@ const WebGL = () => {
 
 
   useEffect(() => {
+    async function UnityUnload() {
+      await unload();
+    }
     return () => {
       const scripts = document.getElementsByTagName('script')
       const scriptsArray = [...scripts]
@@ -53,7 +56,8 @@ const WebGL = () => {
       ))
       removeEventListener('keypress', unload)
       isLoaded &&
-      unload();
+
+      UnityUnload();
       removeEventListener('keypress', unload)
     }
   }, [isLoaded, unload, removeEventListener])
