@@ -18,10 +18,18 @@ function App() {
     codeUrl: "/build/solar-system-build.wasm.br",
   });
 
+  
   useEffect(() => {
     return () => {
       (!window.location.pathname.includes('webgl') && isLoaded) &&
-          unload();
+          unload()
+          window.document.removeEventListener('keypress', unload)
+          const scripts = document.getElementsByTagName('script')
+          const scriptsArray = [...scripts]
+          scriptsArray.map((script) => (
+            script.src.includes("/build/solar-system-build.framework.js") &&
+            script.remove()
+        ))
       }
     }, [isLoaded, unload]);
 
@@ -29,7 +37,7 @@ function App() {
     <div>
       <Router>
         <Header/>
-          <UnityContext.Provider value={{isLoaded, loadingProgression }} >
+          <UnityContext.Provider value={{Unity, unityProvider, isLoaded, loadingProgression }} >
             <main>
               <Routes>
                   <Route path="/" element={<Home />} />              
