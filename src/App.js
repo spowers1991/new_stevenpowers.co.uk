@@ -5,18 +5,16 @@ import Footer from './components/Footer';
 import Home from './pages/home'
 import Contact from './pages/contact'
 import WebGL from './pages/webgl'
-import { Unity, useUnityContext } from "react-unity-webgl";
+import { useUnityContext } from "react-unity-webgl";
+
+
 
 function App() {
 
-  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
-  
+  const { unload } = useUnityContext({  });
+
   async function UnityUnload() {
+    !window.location.href.includes('webgl') &&
     await unload();
     // Ready to navigate to another page.
   }
@@ -25,14 +23,14 @@ function App() {
     <div>
       <Router>
         <Header/>
-            <main>
-              <Routes>
-                  <Route path="/" element={<Home />} />              
-                  <Route path="pages/home" element={<Home />} />
-                  <Route path="pages/webgl" element={<WebGL />} UnityUnload={UnityUnload} canvas={<Unity className="w-full h-full" unityProvider={unityProvider} isLoaded={isLoaded} loadingProgression={loadingProgression}/>}/>    
-                  <Route path="pages/contact" element={<Contact />}  />      
-              </Routes>
-            </main>
+          <main>
+            <Routes>
+                <Route path="/" element={<Home />} />              
+                <Route path="pages/home" element={<Home />} />
+                <Route path="pages/webgl" element={<WebGL UnityUnload={UnityUnload}/>} />    
+                <Route path="pages/contact" element={<Contact />}  />      
+            </Routes>
+          </main>
         <Footer />    
       </Router>
     </div>
