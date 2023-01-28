@@ -21,13 +21,14 @@ function App() {
   useEffect(() => {
   return () => {
     isLoaded &&
+    !window.location.href.includes('webgl') &&
     console.log('clean here!')
     unload();
     const scripts = document.getElementsByTagName('script')
     const scriptsArray = [...scripts]
     scriptsArray.map((script) => (
       script.src.includes("/build/solar-system-build.framework.js.br") &&
-      script.remove()
+      //script.remove()
     ))
   }
   }, [isLoaded, unload]);
