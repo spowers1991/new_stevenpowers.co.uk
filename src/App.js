@@ -11,7 +11,7 @@ function App() {
 
   const UnityContext = createContext();
 
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
+  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
@@ -20,13 +20,9 @@ function App() {
 
   useEffect(() => {
   return () => {
-    isLoaded &&
-    console.log(window.location.pathname)
     !window.location.pathname.includes('webgl') &&
-    setTimeout(() => {
-      unload();
-    }, 100);
-   
+      isLoaded &&
+        unload();
   }
   }, [isLoaded, unload]);
 
@@ -34,7 +30,7 @@ function App() {
     <div>
       <Router>
         <Header/>
-        <UnityContext.Provider value={{isLoaded, loadingProgression, unload, removeEventListener }} >
+        <UnityContext.Provider value={{isLoaded, loadingProgression }} >
             <main>
               <Routes>
                   <Route path="/" element={<Home />} />              
