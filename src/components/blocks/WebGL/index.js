@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom'; 
-import { Unity, useUnityContext } from "react-unity-webgl";
 
+const WebGL = (props) => {  
 
-const WebGL = () => {  
+  const {Unity , unityProvider, isLoaded, loadingProgression, unload, removeEventListener, UnityUnload} = useContext(props.UnityContext)
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -11,13 +11,6 @@ const WebGL = () => {
     fullscreen !== false &&
     setFullScreen(false)
   }
-
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
     
   const location = useLocation();
   const [state, setState] = useState(false)
@@ -44,9 +37,6 @@ const WebGL = () => {
 
 
   useEffect(() => {
-    async function UnityUnload() {
-      await unload();
-    }
     return () => {
       const scripts = document.getElementsByTagName('script')
       const scriptsArray = [...scripts]
@@ -60,7 +50,7 @@ const WebGL = () => {
       UnityUnload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [isLoaded, unload, removeEventListener, UnityUnload])
 
 
   return (
@@ -85,7 +75,9 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={unityProvider}/>
+          {state && unityProvider &&
+            <Unity className="w-full h-full" unityProvider={unityProvider} />
+          }
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
