@@ -22,14 +22,23 @@ function App() {
 
   useEffect(() => {
     return () => {
+      const scripts = document.getElementsByTagName('script')
+      const scriptsArray = [...scripts]
       !isLoaded &&
-      console.log('clean up here')
+      removeEventListener('keypress', unload)
+      scriptsArray.map((script) => (
+        script.remove()
+      ))
+      !unityState &&
       isLoaded &&
       unload();
       console.log('is loaded!')
       removeEventListener('keypress', unload)
+      scriptsArray.map((script) => (
+        script.remove()
+      ))
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [isLoaded, unload, removeEventListener, unityState])
 
   return (
     <div>
