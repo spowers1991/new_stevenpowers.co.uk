@@ -5,16 +5,8 @@ import Footer from './components/Footer';
 import Home from './pages/home'
 import Contact from './pages/contact'
 import WebGL from './pages/webgl'
-import { Unity, useUnityContext } from "react-unity-webgl";
 
 function App() {
-
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
 
   return (
     <div>
@@ -24,7 +16,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />              
                 <Route path="pages/home" element={<Home />} />
-                <Route path="pages/webgl" element={<WebGL  Unity={Unity} unityProvider={unityProvider} isLoaded={isLoaded} loadingProgression={loadingProgression} unload={unload} removeEventListener={removeEventListener}/>} />    
+                <Route path="pages/webgl" element={<WebGL />} />    
                 <Route path="pages/contact" element={<Contact />}  />      
             </Routes>
           </main>
