@@ -22,8 +22,10 @@ function App() {
   return () => {
     isLoaded &&
     !window.location.href.includes('webgl') &&
-    console.log('clean here!')
-    unload();
+    console.log(window.location.href)
+    setTimeout(() => {
+      unload();
+    }, 100);
    
   }
   }, [isLoaded, unload]);
