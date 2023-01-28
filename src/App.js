@@ -20,9 +20,9 @@ function App() {
 
   
   useEffect(() => {
+    (!window.location.pathname.includes('webgl') && isLoaded) &&
+    unload()
     return () => {
-      (!window.location.pathname.includes('webgl') && isLoaded) &&
-          unload()
           window.document.removeEventListener('keypress', unload)
           const scripts = document.getElementsByTagName('script')
           const scriptsArray = [...scripts]
