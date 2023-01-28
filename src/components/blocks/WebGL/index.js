@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { AbortController } from 'abort-controller';
 
 
 const WebGL = () => {  
+
+  const controller = new AbortController();
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -51,6 +54,7 @@ const WebGL = () => {
         script.src.includes("solar-system-build.framework.js") &&
         script.remove()
       ))
+      controller.abort()
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
@@ -80,7 +84,7 @@ const WebGL = () => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <Unity className="w-full h-full" unityProvider={unityProvider}/>
+          <Unity className="w-full h-full" unityProvider={unityProvider} signal={controller.signal}/>
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
