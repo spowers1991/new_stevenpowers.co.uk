@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom'; 
-import { Unity, useUnityContext } from "react-unity-webgl";
 
 
-const WebGL = () => {  
+const WebGL = (props) => {  
+
+  const {Unity, unityProvider, isLoaded, loadingProgression, unload, removeEventListener, unMountUnity } = useContext(props.UnityContext);
+
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -12,12 +14,6 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
     
   const location = useLocation();
   const [state, setState] = useState(false)
@@ -45,6 +41,7 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
+      unMountUnity();
       const scripts = document.getElementsByTagName('script')
       const scriptsArray = [...scripts]
       scriptsArray.map((script) => (
@@ -55,7 +52,7 @@ const WebGL = () => {
       unload();
       removeEventListener('keypress', unload)
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [isLoaded, unload, removeEventListener, unMountUnity])
 
 
   return (
