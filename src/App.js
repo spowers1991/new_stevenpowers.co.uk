@@ -18,13 +18,6 @@ function App() {
     codeUrl: "/build/solar-system-build.wasm.br",
   });
 
-  useEffect(() => {
-  return () => {
-    !window.location.pathname.includes('webgl') &&
-      isLoaded &&
-        unload();
-  }
-  }, [isLoaded, unload]);
 
   return (
     <div>
