@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     return () => {
       !isLoaded &&
+      console.log('clean up here')
       isLoaded &&
       unload();
       console.log('is loaded!')
@@ -33,14 +34,14 @@ function App() {
   return (
     <div>
       <Router>
-        <Header/>
+        <Header UnityContext={UnityContext} />
         <UnityContext.Provider value={{ Unity, useUnityContext, unityProvider, isLoaded, loadingProgression, unload, removeEventListener, unityState, setUnityState}}>
           <main>
             <Routes>
                 <Route path="/" element={<Home />} />              
                 <Route path="pages/home" element={<Home />} />
                 <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} canvas={<Unity unityProvider={unityProvider}/>} />} />    
-                <Route path="pages/contact" element={<Contact />}  />                   
+                <Route path="pages/contact" element={<Contact />}  />                  
             </Routes>  
           </main>
           </UnityContext.Provider>
