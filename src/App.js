@@ -23,6 +23,12 @@ function App() {
     isLoaded &&
     console.log('clean here!')
     unload();
+    const scripts = document.getElementsByTagName('script')
+    const scriptsArray = [...scripts]
+    scriptsArray.map((script) => (
+      script.src.includes("/build/solar-system-build.framework.js.br") &&
+      script.remove()
+    ))
   }
   }, [isLoaded, unload]);
 
