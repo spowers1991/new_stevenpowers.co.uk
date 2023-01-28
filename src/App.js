@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -20,23 +20,25 @@ function App() {
 
   const [unityState, setUnityState] = useState(false)
 
-  function cleanUnity(state){
-    isLoaded && 
-    state &&
-    unload();
-    console.log('clean up test')
-  }
+  useEffect(() => {
+    return () => {
+      !isLoaded &&
+      isLoaded &&
+      unload();
+      removeEventListener('keypress', unload)
+    }
+  }, [isLoaded, unload, removeEventListener])
 
   return (
     <div>
       <Router>
         <Header/>
-        <UnityContext.Provider value={{ Unity, useUnityContext, unityProvider, isLoaded, loadingProgression, unload, removeEventListener, unityState, setUnityState, cleanUnity}}>
+        <UnityContext.Provider value={{ Unity, useUnityContext, unityProvider, isLoaded, loadingProgression, unload, removeEventListener, unityState, setUnityState}}>
           <main>
             <Routes>
                 <Route path="/" element={<Home />} />              
                 <Route path="pages/home" element={<Home />} />
-                <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} cleanUnity={cleanUnity}/>} />    
+                <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} />} />    
                 <Route path="pages/contact" element={<Contact />}  />                   
             </Routes>  
           </main>

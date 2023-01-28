@@ -45,8 +45,6 @@ const WebGL = (props) => {
 
   useEffect(() => {
     return () => {
-      !isLoaded &&
-      props.cleanUnity(true)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
