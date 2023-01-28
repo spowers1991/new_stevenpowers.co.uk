@@ -48,8 +48,9 @@ const WebGL = () => {
       const scripts = document.getElementsByTagName('script')
       const scriptsArray = [...scripts]
       scriptsArray.map((script) => (
-        (script.src.includes("solar-system-build.framework.js") || script.src.includes("build/solar-system-build.loader")) &&
-        script.remove()
+        script.src.includes("solar-system-build.framework.js") &&
+        script.remove(),
+        unload()
       ))
       removeEventListener('keypress', unload)
       isLoaded &&
