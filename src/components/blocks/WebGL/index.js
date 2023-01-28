@@ -67,7 +67,7 @@ const WebGL = (props) => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-          <props.canvas className="w-full h-full" />
+          <canvas className="w-full h-full"  />
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen
