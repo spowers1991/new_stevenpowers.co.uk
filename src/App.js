@@ -1,4 +1,4 @@
-import React, {createContext} from 'react';
+import React, {useEffect, createContext} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -18,23 +18,19 @@ function App() {
     codeUrl: "/build/solar-system-build.wasm.br",
   });
 
-  function UnityUnload() {
+  useEffect(() => {
+  return () => {
     isLoaded &&
+    console.log('clean here!')
     unload();
-    const scripts = document.getElementsByTagName('script')
-    const scriptsArray = [...scripts]
-    scriptsArray.map((script) => (
-      script.src.includes("solar-system-build") &&
-      script.remove()
-    ))
-    removeEventListener('keypress', unload)
   }
+  }, [isLoaded, unload]);
 
   return (
     <div>
       <Router>
         <Header/>
-        <UnityContext.Provider value={{isLoaded, loadingProgression, unload, removeEventListener, UnityUnload }} >
+        <UnityContext.Provider value={{isLoaded, loadingProgression, unload, removeEventListener }} >
             <main>
               <Routes>
                   <Route path="/" element={<Home />} />              

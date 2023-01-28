@@ -10,7 +10,7 @@ const WebGL = (props) => {
     setFullScreen(false)
   }
 
-  const { isLoaded, loadingProgression, UnityUnload } = useContext(props.UnityContext)
+  const { isLoaded, loadingProgression } = useContext(props.UnityContext)
     
   const location = useLocation();
   const [state, setState] = useState(false)
@@ -34,13 +34,6 @@ const WebGL = (props) => {
 
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
-
-
-  useEffect(() => {
-    return () => {
-      UnityUnload()
-    }
-  }, [UnityUnload])
 
 
   return (
