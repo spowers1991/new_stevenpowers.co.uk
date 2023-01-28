@@ -21,8 +21,8 @@ function App() {
   useEffect(() => {
   return () => {
     isLoaded &&
-    !window.location.pathname.includes('webgl') &&
     console.log(window.location.pathname)
+    !window.location.pathname.includes('webgl') &&
     setTimeout(() => {
       unload();
     }, 100);
