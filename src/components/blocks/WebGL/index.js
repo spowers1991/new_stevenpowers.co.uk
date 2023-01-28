@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 
-const WebGL = () => {  
+const WebGL = (props) => {  
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -12,7 +12,7 @@ const WebGL = () => {
     setFullScreen(false)
   }
 
-  const { unityProvider, isLoaded, loadingProgression, unload, removeEventListener } = useUnityContext({
+  const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
@@ -45,17 +45,9 @@ const WebGL = () => {
 
   useEffect(() => {
     return () => {
-      const scripts = document.getElementsByTagName('script')
-      const scriptsArray = [...scripts]
-      scriptsArray.map((script) => (
-        script.src.includes("solar-system-build.framework.js") &&
-        script.remove()
-      ))
-      isLoaded &&
-      unload();
-      removeEventListener('keypress', unload)
+      props.UnityUnload();
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [props])
 
 
   return (

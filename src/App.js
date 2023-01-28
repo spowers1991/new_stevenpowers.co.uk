@@ -7,8 +7,6 @@ import Contact from './pages/contact'
 import WebGL from './pages/webgl'
 import { useUnityContext } from "react-unity-webgl";
 
-
-
 function App() {
 
   const { unload } = useUnityContext({  });
