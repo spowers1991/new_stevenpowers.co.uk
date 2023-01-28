@@ -16,8 +16,9 @@ const WebGL = (props) => {
   const [state, setState] = useState(false)
 
   useEffect(() => {
+      setUnityState(true);
       setState(true)
-  }, [location]);
+  }, [location, setUnityState]);
 
   const [loadingPercentage, SetLoadingPercentage] = useState(0)
 
@@ -38,7 +39,7 @@ const WebGL = (props) => {
 
   useEffect(() => {
     return () => {
-      setUnityState(true)
+      setUnityState(false)
       isLoaded &&
       unload();
       removeEventListener('keypress', unload)
