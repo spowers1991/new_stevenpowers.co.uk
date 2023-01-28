@@ -10,7 +10,7 @@ const WebGL = (props) => {
     setFullScreen(false)
   }
 
-  const { isLoaded, loadingProgression, unload, removeEventListener } = useContext(props.UnityContext)
+  const { isLoaded, loadingProgression, UnityUnload } = useContext(props.UnityContext)
     
   const location = useLocation();
   const [state, setState] = useState(false)
@@ -38,17 +38,9 @@ const WebGL = (props) => {
 
   useEffect(() => {
     return () => {
-      const scripts = document.getElementsByTagName('script')
-      const scriptsArray = [...scripts]
-      scriptsArray.map((script) => (
-        script.src.includes("solar-system-build.framework.js") &&
-        script.remove()
-      ))
-      isLoaded &&
-      unload();
-      removeEventListener('keypress', unload)
+      UnityUnload()
     }
-  }, [isLoaded, unload, removeEventListener])
+  }, [UnityUnload])
 
 
   return (

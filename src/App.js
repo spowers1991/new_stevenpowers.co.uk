@@ -19,6 +19,7 @@ function App() {
   });
 
   function UnityUnload() {
+    isLoaded &&
     unload();
     const scripts = document.getElementsByTagName('script')
     const scriptsArray = [...scripts]
