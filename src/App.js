@@ -20,10 +20,9 @@ function App() {
 
   useEffect(() => {
   return () => {
-    !window.location.pathname.includes('webgl') &&
-      isLoaded &&
+    (!window.location.pathname.includes('webgl') && isLoaded) &&
         unload();
-  }
+    }
   }, [isLoaded, unload]);
 
   return (
