@@ -1,4 +1,4 @@
-import React, {useEffect, createContext} from 'react';
+import React, {useEffect, createContext, useRef} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -11,6 +11,7 @@ function App() {
 
   const UnityContext = createContext();
 
+  
   const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
@@ -18,21 +19,30 @@ function App() {
     codeUrl: "/build/solar-system-build.wasm.br",
   });
 
-  
-  useEffect(() => {
+  const iframeRef = useRef();
+  const unityFrameRef = useRef();
+  var firstLog = false;
 
-    return () => {
-          (!window.location.pathname.includes('webgl') && isLoaded) &&
-          unload()
-          window.document.removeEventListener('keypress', unload)
-          const scripts = document.getElementsByTagName('script')
-          const scriptsArray = [...scripts]
-          scriptsArray.map((script) => (
-            script.src.includes("solar-system-build") &&
-            script.remove()
-        ))
-      }
-    }, [isLoaded, unload]);
+
+    useEffect(() => {
+      console.log("use effect content:");
+      return () => {
+        if (iframeRef !== null) {
+          if (firstLog) {
+            console.log("CleanUp function called");
+            unload()
+            window.document
+              .getElementById("iframeContainer")
+              .removeChild(iframeRef.current);
+          }
+  
+          firstLog = true;
+          if (firstLog) {
+            console.log("first log activated");
+          }
+        }
+      };
+    }, []);
 
   return (
     <div>
@@ -43,7 +53,7 @@ function App() {
               <Routes>
                   <Route path="/" element={<Home />} />              
                   <Route path="pages/home" element={<Home />} />
-                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} canvas={ <Unity className="w-full h-full" unityProvider={unityProvider && unityProvider}/> } /> } />    
+                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} canvas={ <div id="iframeContainer" ref={iframeRef}><Unity className="w-full h-full" unityProvider={unityProvider} ref={unityFrameRef}/> </div>} /> } />    
                   <Route path="pages/contact" element={<Contact />}  />      
               </Routes>
             </main>
