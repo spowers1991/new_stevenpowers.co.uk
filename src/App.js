@@ -25,12 +25,7 @@ function App() {
           (!window.location.pathname.includes('webgl') && isLoaded) &&
           unload()
           window.document.removeEventListener('keypress', unload)
-          const scripts = document.getElementsByTagName('script')
-          const scriptsArray = [...scripts]
-          scriptsArray.map((script) => (
-            script.src.includes("solar-system-build.framework") &&
-            script.remove()
-        ))
+       
       }
     }, [isLoaded, unload]);
 
