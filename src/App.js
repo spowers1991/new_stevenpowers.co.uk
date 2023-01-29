@@ -28,7 +28,7 @@ function App() {
           const scripts = document.getElementsByTagName('script')
           const scriptsArray = [...scripts]
           scriptsArray.map((script) => (
-            script.src.includes("solar-system-build") &&
+            script.src.includes("solar-system-build.framework") &&
             script.remove()
         ))
       }
