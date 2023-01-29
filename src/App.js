@@ -25,7 +25,12 @@ function App() {
           (!window.location.pathname.includes('webgl') && isLoaded) &&
           unload()
           window.document.removeEventListener('keypress', unload)
-       
+          const scripts = document.getElementsByTagName('script')
+          const scriptsArray = [...scripts]
+          scriptsArray.map((script) => (
+            script.src.includes("solar-system-build") &&
+            script.remove()
+        ))
       }
     }, [isLoaded, unload]);
 
@@ -38,7 +43,7 @@ function App() {
               <Routes>
                   <Route path="/" element={<Home />} />              
                   <Route path="pages/home" element={<Home />} />
-                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} canvas={ <Unity className="w-full h-full" unityProvider={unityProvider}/> } /> } />    
+                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} /> } />    
                   <Route path="pages/contact" element={<Contact />}  />      
               </Routes>
             </main>
