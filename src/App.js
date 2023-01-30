@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
   
  
-    return () => {
+
           (!window.location.pathname.includes('webgl') ) &&
           window.document.removeEventListener('keypress', window.location.pathname)
           const scripts = document.getElementsByTagName('script')
@@ -25,7 +25,7 @@ function App() {
             script.remove()
         ))
         console.log('test')
-      }
+      
     });
 
   return (
