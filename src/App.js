@@ -11,11 +11,8 @@ function App() {
 
   const UnityContext = createContext();
 
-  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
+  const {  isLoaded, loadingProgression, unload } = useUnityContext({
+
   });
 
   
@@ -23,7 +20,6 @@ function App() {
     (!window.location.pathname.includes('webgl') && isLoaded) &&
     unload()
     return () => {
-          (!window.location.pathname.includes('webgl') && isLoaded) &&
           window.document.removeEventListener('keypress', unload)
           const scripts = document.getElementsByTagName('script')
           const scriptsArray = [...scripts]
@@ -38,7 +34,7 @@ function App() {
     <div>
       <Router>
         <Header/>
-          <UnityContext.Provider value={{Unity, unityProvider, isLoaded, loadingProgression }} >
+          <UnityContext.Provider value={{Unity, useUnityContext,  isLoaded, loadingProgression }} >
             <main>
               <Routes>
                   <Route path="/" element={<Home />} />              
