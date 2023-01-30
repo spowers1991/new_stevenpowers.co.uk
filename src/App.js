@@ -25,7 +25,7 @@ function App() {
             script.remove()
         ))
       }
-    }, []);
+    });
 
   return (
     <div>
