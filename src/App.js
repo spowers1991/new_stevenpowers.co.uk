@@ -11,8 +11,11 @@ function App() {
 
   const UnityContext = createContext();
 
-  const {  isLoaded, loadingProgression, unload } = useUnityContext({
-
+  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
+    loaderUrl: "/build/solar-system-build.loader.js",
+    dataUrl: "/build/solar-system-build.data.br",
+    frameworkUrl: "/build/solar-system-build.framework.js.br",
+    codeUrl: "/build/solar-system-build.wasm.br",
   });
 
   
@@ -34,12 +37,12 @@ function App() {
     <div>
       <Router>
         <Header/>
-          <UnityContext.Provider value={{Unity, useUnityContext,  isLoaded, loadingProgression }} >
+          <UnityContext.Provider value={{Unity, unityProvider, isLoaded, loadingProgression }} >
             <main>
               <Routes>
                   <Route path="/" element={<Home />} />              
                   <Route path="pages/home" element={<Home />} />
-                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} canvas={ <Unity className="w-full h-full" unityProvider={unityProvider}/> } /> } />    
+                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext}  /> } />    
                   <Route path="pages/contact" element={<Contact />}  />      
               </Routes>
             </main>
