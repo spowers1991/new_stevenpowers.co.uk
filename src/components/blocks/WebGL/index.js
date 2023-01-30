@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
-
+import { Unity, useUnityContext } from "react-unity-webgl";
 const WebGL = (props) => {  
 
   const [fullscreen, setFullScreen] = useState(false)
@@ -10,7 +10,13 @@ const WebGL = (props) => {
     setFullScreen(false)
   }
 
-  const {Unity, unityProvider, isLoaded, loadingProgression } = useContext(props.UnityContext)
+
+  const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
+    loaderUrl: "/build/solar-system-build.loader.js",
+    dataUrl: "/build/solar-system-build.data.br",
+    frameworkUrl: "/build/solar-system-build.framework.js.br",
+    codeUrl: "/build/solar-system-build.wasm.br",
+  });
     
   const location = useLocation();
   const [state, setState] = useState(false)
