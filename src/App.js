@@ -22,9 +22,9 @@ function App() {
           const scriptsArray = [...scripts]
           scriptsArray.map((script) => (
             script.src.includes("solar-system-build") &&
-            script.remove(),
-            console.log('test')
+            script.remove()
         ))
+        console.log('test')
       }
     });
 
