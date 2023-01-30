@@ -10,13 +10,20 @@ const WebGL = (props) => {
     setFullScreen(false)
   }
 
-  const {  useUnityContext, isLoaded, loadingProgression } = useContext(props.UnityContext)
-  useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
+  const { Unity, useUnityContext, loadingProgression, isLoaded} = useContext(props.UnityContext)
+
+  function InitUnity() {
+    const { unityProvider } = useUnityContext({
+      loaderUrl: "/build/solar-system-build.loader.js",
+      dataUrl: "/build/solar-system-build.data.br",
+      frameworkUrl: "/build/solar-system-build.framework.js.br",
+      codeUrl: "/build/solar-system-build.wasm.br",
+    
+    });
+  
+  
+    return <Unity unityProvider={unityProvider} />;
+  }
     
   const location = useLocation();
   const [state, setState] = useState(false)
@@ -40,6 +47,7 @@ const WebGL = (props) => {
 
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
+  
 
 
   return (
@@ -64,7 +72,7 @@ const WebGL = (props) => {
           <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
             X
           </div>
-         {props.canvas}
+         {InitUnity()}
       </div>
       <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
             Fullscreen

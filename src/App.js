@@ -11,8 +11,7 @@ function App() {
 
   const UnityContext = createContext();
 
-  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
-
+  const {  unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
   });
 
   
@@ -34,12 +33,12 @@ function App() {
     <div>
       <Router>
         <Header/>
-          <UnityContext.Provider value={{Unity, useUnityContext, unityProvider, isLoaded, loadingProgression }} >
+          <UnityContext.Provider value={{Unity, useUnityContext , unityProvider, isLoaded, loadingProgression }} >
             <main>
               <Routes>
                   <Route path="/" element={<Home />} />              
                   <Route path="pages/home" element={<Home />} />
-                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext} canvas={ <Unity className="w-full h-full" unityProvider={unityProvider}/> } /> } />    
+                  <Route path="pages/webgl" element={<WebGL UnityContext={UnityContext}   /> } />    
                   <Route path="pages/contact" element={<Contact />}  />      
               </Routes>
             </main>
