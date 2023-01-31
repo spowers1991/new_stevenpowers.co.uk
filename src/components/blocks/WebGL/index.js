@@ -55,6 +55,13 @@ const WebGL = () => {
     return () => clearInterval(interval);
   }, [isLoaded, unload]);
 
+  useEffect(() => {
+     (!window.location.pathname.includes('webgl') && isLoaded) {
+      return () => 
+        unload()
+      }  
+  }, [isLoaded, unload]);
+
   
 
     return (
