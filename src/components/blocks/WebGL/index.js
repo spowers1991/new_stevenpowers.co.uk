@@ -54,7 +54,7 @@ const WebGL = () => {
           script.remove()
         ))     
       }
-    }, [isLoaded, unload]);
+    }, [isLoaded, unload, location]);
     
   
 
