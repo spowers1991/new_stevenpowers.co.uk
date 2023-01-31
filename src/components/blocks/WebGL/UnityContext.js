@@ -55,8 +55,7 @@ const UnityContext = () => {
       window.document.removeEventListener('keypress', unload)
       console.log('checking')
     }, 150);
-      return () => clearInterval(interval);
-    }, [unload, isLoaded]);
+  }
     
   
 
