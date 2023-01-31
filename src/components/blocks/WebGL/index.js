@@ -45,7 +45,8 @@ const WebGL = () => {
   useEffect(() => {
       return () => {
         !window.location.pathname.includes('webgl') &&
-        window.location.reload(false);
+        alert('cleaning up webgl scripts')
+        window.location.reload();
       }
     }, [location]);
     
