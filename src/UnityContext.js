@@ -43,6 +43,14 @@ const UnityContext = () => {
 
   
   useEffect(() => {
+    (!window.location.pathname.includes('webgl') && isLoaded) &&
+        document.getElementById("UnityIframe").remove()
+        const scripts = document.getElementsByTagName('script')
+        const scriptsArray = [...scripts]
+        scriptsArray.map((script) => (
+          script.src.includes("solar-system-build.framework.js") &&
+          script.remove()
+        ))
     return () => {
       (!window.location.pathname.includes('webgl') && isLoaded) &&
         document.getElementById("UnityIframe").remove()
