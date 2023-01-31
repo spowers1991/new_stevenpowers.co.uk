@@ -23,6 +23,7 @@ function App() {
     (!window.location.pathname.includes('webgl') && isLoaded) &&
     unload()
     return () => {
+      (!window.location.pathname.includes('webgl') && isLoaded) &&
           window.document.removeEventListener('keypress', unload)
           const scripts = document.getElementsByTagName('script')
           const scriptsArray = [...scripts]
