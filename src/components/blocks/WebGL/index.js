@@ -44,7 +44,7 @@ const WebGL = () => {
   
   useEffect(() => {
       return () => {
-        (!window.location.pathname.includes('webgl') && isLoaded) &&
+        !window.location.pathname.includes('webgl') &&
         unload()
         window.location.reload()
         const scripts = document.getElementsByTagName('script')
