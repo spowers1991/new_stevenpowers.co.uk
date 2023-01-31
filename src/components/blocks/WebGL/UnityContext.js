@@ -46,8 +46,14 @@ const UnityContext = () => {
   
     return () => {
       (isLoaded) &&
-        
         unload()
+        const scripts = document.getElementsByTagName('script')
+        const scriptsArray = [...scripts]
+        scriptsArray.map((script) => (
+          script.src.includes("solar-system-build") &&
+          script.remove()
+      ))
+      window.document.removeEventListener('keypress', unload)
       }
     }, [isLoaded, unload]);
     
