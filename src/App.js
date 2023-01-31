@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -7,6 +7,13 @@ import Contact from './pages/contact'
 import WebGL from './pages/webgl'
 
 function App() {
+
+  useEffect(() => {
+    return () => {
+      !window.location.pathname.includes('webgl') &&
+      window.location.reload()  
+    }
+  }, [location]);
 
   return (
     <div>
