@@ -46,7 +46,7 @@ const WebGL = () => {
       return () => {
         (!window.location.pathname.includes('webgl') && isLoaded) &&
         unload()
-        location.reload();
+        window.location.reload()
         const scripts = document.getElementsByTagName('script')
         const scriptsArray = [...scripts]
         scriptsArray.map((script) => (
