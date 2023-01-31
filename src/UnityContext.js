@@ -44,9 +44,11 @@ const UnityContext = () => {
   
   useEffect(() => {
     (!window.location.pathname.includes('webgl') && isLoaded) &&
+      window.document.removeEventListener('keypress', unload)
         unload()
     return () => {
       (!window.location.pathname.includes('webgl') && isLoaded) &&
+        window.document.removeEventListener('keypress', unload)
         unload()
       }
     }, [isLoaded, unload]);
