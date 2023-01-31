@@ -43,13 +43,16 @@ const WebGL = () => {
 
   
   useEffect(() => {
+    (!window.location.pathname.includes('webgl') && isLoaded) &&
+        console.log('test1')
+        unload()
       return () => {
         (!window.location.pathname.includes('webgl') && isLoaded) &&
+        console.log('test2')
         unload()   
       }
     }, [isLoaded, unload]);
     
-  
 
     return (
       <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10 mx-auto'}  ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300 px-10`}>
