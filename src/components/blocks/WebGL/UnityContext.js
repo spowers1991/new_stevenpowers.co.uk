@@ -53,6 +53,10 @@ const UnityContext = (props) => {
           script.src.includes("solar-system-build.framework.js") &&
           script.remove()
       ))
+      scriptsArray.map((script) => (
+        script.src.includes("solar-system-build.wasm") &&
+        script.remove()
+    ))
       window.document.removeEventListener('keypress', unload)
       }
     }, [isLoaded, unload]);
