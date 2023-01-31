@@ -11,11 +11,20 @@ function App() {
 
   const UnityContext = createContext();
 
+
+ 
+  
+  const LoaderUrl =  window.location.pathname.includes('webgl') && "/build/solar-system-build.loader.js"
+  const dataUrl =  window.location.pathname.includes('webgl') && "/build/solar-system-build.data.br"
+  const frameworkUrl = window.location.pathname.includes('webgl') && "/build/solar-system-build.framework.js.br"
+  const codeUrl = window.location.pathname.includes('webgl') && "/build/solar-system-build.wasm.br"
+  
+
   const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
+    loaderUrl: LoaderUrl,
+    dataUrl: dataUrl,
+    frameworkUrl: frameworkUrl,
+    codeUrl: codeUrl,
   });
 
   
