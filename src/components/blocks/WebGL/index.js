@@ -44,7 +44,7 @@ const WebGL = () => {
   
   useEffect(() => {
       return () => {
-        (!window.location.pathname && isLoaded) &&
+        (!window.location.pathname.includes('webgl') && isLoaded) &&
         unload()   
       }
     }, [isLoaded, unload]);
