@@ -48,6 +48,7 @@ const WebGL = () => {
         console.log('do nothing')
         clearInterval(interval);
       } else {
+        console.log('intervalUnload')
         unload()
       }
     }, 150);
@@ -56,11 +57,12 @@ const WebGL = () => {
   }, [isLoaded, unload]);
 
   useEffect(() => {
-     (!window.location.pathname.includes('webgl') && isLoaded) {
-      return () => 
-        unload()
-      }  
-  }, [isLoaded, unload]);
+      return () => {
+        (!window.location.pathname.includes('WebGL') && isLoaded) &&
+        console.log('unload')
+        unload()  
+      }
+    }, [isLoaded, unload]);
 
   
 
