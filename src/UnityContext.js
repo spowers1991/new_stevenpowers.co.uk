@@ -43,18 +43,15 @@ const UnityContext = () => {
 
   
   useEffect(() => {
-    (!window.location.pathname.includes('webgl') && isLoaded) &&
-      window.document.removeEventListener('keypress', unload)
-        unload()
     return () => {
+      const scripts = document.getElementsByTagName('script')
+      const scriptsArray = [...scripts]
       (!window.location.pathname.includes('webgl') && isLoaded) &&
-        window.document.removeEventListener('keypress', unload)
-        const scripts = document.getElementsByTagName('script')
-          const scriptsArray = [...scripts]
           scriptsArray.map((script) => (
             script.src.includes("solar-system-build.framework.js") &&
             script.remove()
         ))
+        window.document.removeEventListener('keypress', unload)
         unload()
       }
     }, [isLoaded, unload]);
