@@ -43,27 +43,19 @@ const WebGL = () => {
 
   
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (window.location.pathname.includes('webgl')) {
-        console.log('do nothing')
-        clearInterval(interval);
-      } else {
-        console.log('intervalUnload')
-        unload()
-      }
-    }, 150);
-
-    return () => clearInterval(interval);
-  }, [isLoaded, unload]);
-
-  useEffect(() => {
       return () => {
-        (!window.location.pathname.includes('WebGL') && isLoaded) &&
-        console.log('unload')
-        unload()  
+        (!window.location.pathname.includes('webgl') && isLoaded) &&
+        unload()
+        location.reload();
+        const scripts = document.getElementsByTagName('script')
+        const scriptsArray = [...scripts]
+        scriptsArray.map((script) => (
+          script.src.includes("solar-system-build.framework.js") &&
+          script.remove()
+        ))     
       }
     }, [isLoaded, unload]);
-
+    
   
 
     return (
