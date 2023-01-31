@@ -43,9 +43,17 @@ const WebGL = () => {
 
   
   useEffect(() => {
+    console.log('test1')
       return () => {
         (!window.location.pathname.includes('WebGL') && isLoaded) &&
-        unload() 
+        console.log('test2')
+        unload()
+        const scripts = document.getElementsByTagName('script')
+        const scriptsArray = [...scripts]
+        scriptsArray.map((script) => (
+          script.src.includes("solar-system-build.framework.js") &&
+          script.remove()
+        ))     
       }
     }, [isLoaded, unload]);
     

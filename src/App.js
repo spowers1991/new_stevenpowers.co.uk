@@ -16,7 +16,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />              
                 <Route path="pages/home" element={<Home />} />
-                <Route path="pages/webgl" exact={false} element={<WebGL /> } />    
+                <Route path="pages/webgl" element={<WebGL /> } />    
                 <Route path="pages/contact" element={<Contact />}  />      
             </Routes>
           </main>
