@@ -43,8 +43,18 @@ const UnityContext = () => {
 
   
   useEffect(() => {
+
+    unload()
+    const timer = setTimeout(() => {
+    const scripts = document.getElementsByTagName('script')
+    const scriptsArray = [...scripts]
+    scriptsArray.map((script) => (
+      (script.src.includes("solar-system-build.framework.js") ||  script.src.includes("solar-system-build.wasm")) &&
+      script.remove()
+    ))   
+    
       return () => {
-        (!window.location.pathname.includes('webgl') && isLoaded) &&
+        
         unload()
         const timer = setTimeout(() => {
         const scripts = document.getElementsByTagName('script')
@@ -52,10 +62,9 @@ const UnityContext = () => {
         scriptsArray.map((script) => (
           (script.src.includes("solar-system-build.framework.js") ||  script.src.includes("solar-system-build.wasm")) &&
           script.remove()
-        ))     
-        }, 1000);
-        return () => clearTimeout(timer);
-      }
+        ))   
+          
+      
     }, [isLoaded, unload]);
     
   
