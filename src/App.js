@@ -23,14 +23,17 @@ function App() {
     (!window.location.pathname.includes('webgl') && isLoaded) &&
     unload()
     return () => {
-      (!window.location.pathname.includes('webgl') && isLoaded) &&
           window.document.removeEventListener('keypress', unload)
           const scripts = document.getElementsByTagName('script')
           const scriptsArray = [...scripts]
           scriptsArray.map((script) => (
-            (script.src.includes("solar-system-build.framework.js") &&  script.src.includes("solar-system-build.wasm")) &&
+            script.src.includes("solar-system-build.framework.js") &&
             script.remove()
         ))
+        scriptsArray.map((script) => (
+          script.src.includes("solar-system-build.wasm.js") &&
+          script.remove()
+      ))
       }
     }, [isLoaded, unload]);
 
