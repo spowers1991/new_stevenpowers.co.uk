@@ -57,7 +57,7 @@ const LightBox = (props) => {
             initialSlide={props.keyValue}
             onSlideChange={(e) => props.SwiperSyncedKeyCallback(e.realIndex)}
             >  
-            <button className="group absolute bg-black text-white rounded-xl py-3 px-5 top-[unset] sm:top-5 bottom-20 sm:bottom-[unset] right-5 text-3xl z-20 hover:bg-white hover:text-black duration-500" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}}>
+            <button className="drop-shadow-2xl  group absolute bg-black text-white rounded-xl py-3 px-5 top-[unset] sm:top-5 bottom-20 sm:bottom-[unset] right-5 text-3xl z-20 hover:bg-white hover:text-black duration-500" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}}>
                 X
                 <div className='bg-white group-hover:bg-black absolute bottom-3 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-[60%] transition transition-gpu duration-200'>
 
@@ -71,7 +71,7 @@ const LightBox = (props) => {
                         :
                             <div to={`#post-`+index} className="absolute w-full h-full inset-0 opacity-40 bg-black z-10 flex items-center" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}} role="presentation" />                        
                         }
-                           <div className={`rounded relative inset-0 w-[95%] h-[95%] sm:w-[80%] sm:max-w-5xl h-fit-content sm:h-[fit-content] bg-white p-8 m-auto overflow-hidden duration-150 z-30`} >
+                           <div className={`drop-shadow-2xl  rounded relative inset-0 w-[95%] h-[95%] sm:w-[80%] sm:max-w-5xl h-fit-content sm:h-[fit-content] bg-white p-8 m-auto overflow-hidden duration-150 z-30`} >
                                 <div className="block sm:flex sm:flex-col cursor-pointer" role="presentation">
                                     <div className="block sm:flex sm:flex-row gap-8">
                                         <div className="w-full sm:w-1/2">
@@ -107,7 +107,7 @@ const LightBox = (props) => {
                     </SwiperSlide>
                 ))
             }
-            <div className={`rounded overflow-hidden max-w-5xl m-auto z-30 absolute left-0 right-0 bottom-0 sm:bottom-10 w-[80%] lg:w-full h-2`}>
+            <div className={`drop-shadow-2xl  rounded overflow-hidden max-w-5xl m-auto z-30 absolute left-0 right-0 bottom-0 sm:bottom-10 w-[80%] lg:w-full h-2`}>
                 <div className="rounded progress z-30" />
             </div>    
         </Swiper>      

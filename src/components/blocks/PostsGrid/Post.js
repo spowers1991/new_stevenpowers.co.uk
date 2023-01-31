@@ -4,7 +4,7 @@ import Button from '../../utility/Button';
 const Post = (props) => {
 
 return (
-    <div id={'post-'+props.index} className="group flex flex-col cursor-pointer -mt-2 pt-4" onClick={() => props.HandlePopUp(props.index)} data={props.post?.title} key={props.index} role="presentation">
+    <div id={'post-'+props.index} className={`duration-200 rounded border-2 border-dashed hover:border-solid group flex flex-col cursor-pointer p-4 ${(props.open && props.index === props.SwiperSyncedKey && '!border-solid ')}`} onClick={() => props.HandlePopUp(props.index)} data={props.post?.title} key={props.index} role="presentation">
         <div className="relative overflow-hidden mb-6">
             <div className={`rounded absolute w-full h-full bg-black duration-300 opacity-0 group-hover:opacity-30 ${(props.open && props.index === props.SwiperSyncedKey && 'opacity-30')}`} />
             <img className="w-full rounded" src="https://via.placeholder.com/224x224" alt="" />
