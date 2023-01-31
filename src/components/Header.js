@@ -15,10 +15,10 @@ const Header = () => {
                     <Button target="/" text="Json data" large={true} location={pathname} />
                 </li>
                 <li>
-                    <Button target="/pages/webgl" text="WebGL" large={true} location={pathname}/>
+                    <Button target="/webgl" text="WebGL" large={true} location={pathname}/>
                 </li>
                 <li>
-                    <Button target="/pages/contact" text="Contact" large={true} location={pathname}/>
+                    <Button target="/contact" text="Contact" large={true} location={pathname}/>
                 </li>
             </ul>
         </header>    

@@ -22,9 +22,8 @@ function App() {
           <main>
             <Routes>
                 <Route path="/" element={<Home posts={posts}/>} />              
-                <Route path="pages/home" element={<Home posts={posts}/>} />
-                <Route path="pages/webgl" element={<WebGL /> } />    
-                <Route path="pages/contact" element={<Contact />}  />      
+                <Route path="/webgl" element={<WebGL /> } />    
+                <Route path="/contact" element={<Contact />}  />      
             </Routes>
           </main>
         <Footer />    
