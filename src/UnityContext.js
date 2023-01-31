@@ -44,7 +44,7 @@ const UnityContext = () => {
   
   useEffect(() => {
     return () => {
-      
+        isLoaded &&
         unload()
       }
     }, [isLoaded, unload]);
