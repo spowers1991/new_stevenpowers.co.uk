@@ -55,6 +55,10 @@ const WebGL = () => {
     return (
       <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10 mx-auto'}  ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300 px-10`}>
         <div className={`${fullscreen && 'hidden'} mb-10 text-sm`}>
+          <div className="p-3 mb-5 rounded border-black border-2 ">
+            Unfortunely, due to a bug in the Unity WebGL compiler we have to initiate a hard refresh of the application to clear all the scripts after leaving the page that the app is mounted on. Otherwise the WebGL app will take priority over certain keypress event, making them inaccessable to the rest of the app. Unity are
+            aware of the issue and currently there is no fix, this should only be a minor inconvenience.
+          </div>
           <h3>
             <b>
                 Camera Controls:
@@ -67,7 +71,7 @@ const WebGL = () => {
             Increase camera speed: SHIFT (Hold)
           </p>
         </div>
-        <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10'} overflow-hidden duration-300 transform`}>
+        <div className={`${fullscreen ? 'fixed w-full h-full z-30 top-0 left-0' : 'relative max-w-5xl mt-10 rounded'} overflow-hidden duration-300 transform`}>
             <div className={`${isLoaded ? 'opacity-0' : 'opacity-100'} fixed w-full h-full  bg-black text-white text-left pointer-events-none duration-[1s] delay-[3s] flex item-center`}>          
                 <span className="m-auto">Loading... ({loadingPercentage}%) </span>     
             </div>
