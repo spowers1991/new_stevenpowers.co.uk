@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/home'
 import Contact from './pages/contact'
-import UnityContext from './components/blocks/WebGL/UnityContext';
+import WebGL from './pages/webgl'
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />              
                 <Route path="pages/home" element={<Home />} />
-                <Route path="pages/webgl" element={<UnityContext /> } />    
+                <Route path="pages/webgl" element={<WebGL /> } />    
                 <Route path="pages/contact" element={<Contact />}  />      
             </Routes>
           </main>
