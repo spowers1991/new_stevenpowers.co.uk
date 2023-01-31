@@ -4,7 +4,7 @@ import {  Unity, useUnityContext } from "react-unity-webgl";
 
 const WebGL = () => {  
 
-  const {  unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
+  const {  unityProvider, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "/build/solar-system-build.loader.js",
     dataUrl: "/build/solar-system-build.data.br",
     frameworkUrl: "/build/solar-system-build.framework.js.br",
