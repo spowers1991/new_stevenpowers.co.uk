@@ -4,12 +4,7 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 const UnityContext = () => {  
 
-  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext({
-    loaderUrl: "/build/solar-system-build.loader.js",
-    dataUrl: "/build/solar-system-build.data.br",
-    frameworkUrl: "/build/solar-system-build.framework.js.br",
-    codeUrl: "/build/solar-system-build.wasm.br",
-  });
+
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
