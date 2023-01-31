@@ -15,7 +15,8 @@ const UnityContext = () => {
     (!window.location.pathname.includes('webgl') && isLoaded) &&
     unload()
     return () => {
-          window.document.removeEventListener('keypress', unload)
+      (!window.location.pathname.includes('webgl') && isLoaded) &&
+      unload()
    
   
       }
