@@ -1,5 +1,5 @@
 import React from 'react';
-import UnityContext from './UnityContext';
+import UnityContext from '../../../UnityContext';
 
 const WebGL = () => {  
 
