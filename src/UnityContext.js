@@ -43,23 +43,10 @@ const UnityContext = () => {
 
   
   useEffect(() => {
-    (!window.location.pathname.includes('webgl') && isLoaded) &&
-        document.getElementById("UnityIframe").remove()
-        const scripts = document.getElementsByTagName('script')
-        const scriptsArray = [...scripts]
-        scriptsArray.map((script) => (
-          script.src.includes("solar-system-build.framework.js") &&
-          script.remove()
-        ))
+  
     return () => {
-      (!window.location.pathname.includes('webgl') && isLoaded) &&
-        document.getElementById("UnityIframe").remove()
-        const scripts = document.getElementsByTagName('script')
-        const scriptsArray = [...scripts]
-        scriptsArray.map((script) => (
-          script.src.includes("solar-system-build.framework.js") &&
-          script.remove()
-        ))
+      (isLoaded) &&
+        
         unload()
       }
     }, [isLoaded, unload]);
@@ -88,9 +75,7 @@ const UnityContext = () => {
             <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
               X
             </div>
-            <iframe id="UnityIframe" title="unityIframe">
-              <Unity className="w-full h-full" unityProvider={unityProvider} />
-            </iframe>
+            <Unity className="w-full h-full" unityProvider={unityProvider} />
         </div>
         <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
               Fullscreen
