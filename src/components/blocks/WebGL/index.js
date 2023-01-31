@@ -43,20 +43,18 @@ const WebGL = () => {
 
   
   useEffect(() => {
-    console.log('test1')
-      return () => {
-        (!window.location.pathname.includes('WebGL') && isLoaded) &&
-        console.log('test2')
+    const interval = setInterval(() => {
+      if (window.location.pathname.includes('WebGL') && isLoaded) {
+        console.log('do nothing')
+        clearInterval(interval);
+      } else {
         unload()
-        const scripts = document.getElementsByTagName('script')
-        const scriptsArray = [...scripts]
-        scriptsArray.map((script) => (
-          script.src.includes("solar-system-build.framework.js") &&
-          script.remove()
-        ))     
       }
-    }, [isLoaded, unload]);
-    
+    }, 150);
+
+    return () => clearInterval(interval);
+  }, [isLoaded, unload]);
+
   
 
     return (
