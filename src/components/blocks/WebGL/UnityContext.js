@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { useLocation } from 'react-router-dom'; 
-import { Unity, useUnityContext } from "react-unity-webgl";
+import {  useUnityContext } from "react-unity-webgl";
 
-const UnityContext = () => {  
+const UnityContext = (props) => {  
 
-
+  const {  isLoaded, loadingProgression, unload } = useUnityContext({
+    loaderUrl: "/build/solar-system-build.loader.js",
+    dataUrl: "/build/solar-system-build.data.br",
+    frameworkUrl: "/build/solar-system-build.framework.js.br",
+    codeUrl: "/build/solar-system-build.wasm.br",
+  });
 
   const [fullscreen, setFullScreen] = useState(false)
   function fullScreenToggle() {
@@ -76,7 +81,7 @@ const UnityContext = () => {
             <div className={`${fullscreen ? 'block' : 'hidden'} fixed top-20 right-20 z-50 text-white text-7xl cursor-pointer close-icon`} onClick={() => setFullScreen(false)} >
               X
             </div>
-            <Unity className="w-full h-full" unityProvider={unityProvider} />
+            {props.canvas}
         </div>
         <div className={`rounded text-xs relative inline-block lg:mt-0 text-l text-black py-3 mt-5 text-center group cursor-pointer`}  onClick={() => fullScreenToggle()}>
               Fullscreen

@@ -1,11 +1,11 @@
 import React from 'react';
 import Page from '../components/Page'
-import WebGL from '../components/blocks/WebGL/index';
+import UnityContext from '../components/blocks/WebGL/UnityContext';
 
 const WebGl = (props) => {  
     return (        
         <div>     
-            <Page title="Solar System in WebGL" caption="Here is a WebGL Solar System I created and imported into React..." blocks={<WebGL UnityContext={props.UnityContext} canvas={props.canvas}/>}/>
+            <Page title="Solar System in WebGL" caption="Here is a WebGL Solar System I created and imported into React..." blocks={<UnityContext UnityContext={props.UnityContext} canvas={props.canvas}/>}/>
         </div>           
     )
 }
