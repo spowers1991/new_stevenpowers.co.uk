@@ -40,6 +40,15 @@ const WebGL = () => {
 
     return () => clearInterval(interval);
   }, [loadingProgression, loadingPercentage]);
+
+  
+  useEffect(() => {
+      return () => {
+        !window.location.pathname.includes('webgl') &&
+        console.clear(); 
+      }
+    }, [location]);
+    
   
 
     return (
