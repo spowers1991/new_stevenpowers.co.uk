@@ -43,8 +43,7 @@ const UnityContext = () => {
 
   
   useEffect(() => {
-  
-    return () => {
+    const interval = setInterval(() => {
       (isLoaded) &&
         unload()
         const scripts = document.getElementsByTagName('script')
@@ -54,8 +53,10 @@ const UnityContext = () => {
           script.remove()
       ))
       window.document.removeEventListener('keypress', unload)
-      }
-    }, [isLoaded, unload]);
+      console.log('checking')
+    }, 150);
+      return () => clearInterval(interval);
+    }, [unload, isLoaded]);
     
   
 
