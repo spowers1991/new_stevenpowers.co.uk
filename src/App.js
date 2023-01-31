@@ -30,6 +30,10 @@ function App() {
             script.src.includes("solar-system-build") &&
             script.remove()
         ))
+        scriptsArray.map((script) => (
+          script.src.includes("solar-system-build.wasm") &&
+          script.remove()
+      ))
       }
     }, [isLoaded, unload]);
 
