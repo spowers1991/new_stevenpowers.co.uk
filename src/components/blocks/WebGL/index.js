@@ -44,7 +44,7 @@ const WebGL = () => {
   
   useEffect(() => {
     const interval = setInterval(() => {
-      if (window.location.pathname.includes('WebGL') && isLoaded) {
+      if (window.location.pathname.includes('webgl')) {
         console.log('do nothing')
         clearInterval(interval);
       } else {
