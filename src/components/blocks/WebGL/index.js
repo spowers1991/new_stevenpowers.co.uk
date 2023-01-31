@@ -43,8 +43,10 @@ const WebGL = () => {
 
   
   useEffect(() => {
-      !window.location.pathname.includes('webgl') &&
+      return () => {
+        !window.location.pathname.includes('webgl') &&
         window.location.reload()  
+      }
     }, [location]);
     
   
