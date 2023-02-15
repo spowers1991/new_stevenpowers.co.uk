@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
           
-        <header className='flex w-full text-white py-10 max-w-5xl px-10 mx-auto'>
+        <header className='flex w-full py-10 max-w-5xl px-10 mx-auto'>
             <ul className='ml-auto flex gap-9 '>
                 <li>
                     <Button target="/" text="Json data" large={true} location={pathname} />
