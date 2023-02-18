@@ -6,7 +6,7 @@ const Account = () => {
 
     return (        
         <div>     
-            <Page title="Account" caption="Account page blah" blocks={<Dashboard/>}/>
+            <Page title="Account" caption="From here you can add and edit your posts" blocks={<Dashboard/>}/>
         </div>           
     )
 }
