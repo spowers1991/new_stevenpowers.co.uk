@@ -3,10 +3,15 @@ import { useLocation } from 'react-router-dom';
 import Login from './Login' 
 import Register from './Register' 
 import AdminPanel from './AdminPanel/Index' 
+import { useJwt } from 'react-jwt';
 
 const Account = () => {  
 
 const [loggedIn, setLoggedIn] = useState(false);
+
+
+const token = localStorage.getItem('token');
+const { decodedToken } = useJwt(token);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -22,7 +27,6 @@ const [loggedIn, setLoggedIn] = useState(false);
   }  
 
   function LogOut() {
-    console.log('test')
     setLoggedIn(false);
     localStorage.clear()
   }  
@@ -47,11 +51,19 @@ const [loggedIn, setLoggedIn] = useState(false);
         </div>
       }
       {loggedIn &&
-        <div className="w-full ">
+        <div className="w-full">
           <div className="border-b-2  mb-5 pb-5 text-right cursor-pointer" onClick={() => LogOut()} >
             Logout 
           </div>
+          {console.log(decodedToken)}
+          {decodedToken?.account_level === 'approved' ?
           <AdminPanel />
+          :
+          <div>
+            Please wait to be approved by admin. 
+            You can contact the admin using the contact page.
+          </div>
+          }
         </div>
       }
     </div>
