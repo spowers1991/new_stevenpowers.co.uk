@@ -18,7 +18,7 @@ const UserApprove = () => {
    
     const data = {
         id: this_id,
-        response: 'approve'
+        response: 'approved'
     };
         
     axios.post('http://localhost:5000/update', data)

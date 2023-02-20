@@ -55,7 +55,6 @@ const { decodedToken } = useJwt(token);
           <div className="border-b-2  mb-5 pb-5 text-right cursor-pointer" onClick={() => LogOut()} >
             Logout 
           </div>
-          {console.log(decodedToken)}
           {decodedToken?.account_level === 'approved' ?
           <AdminPanel />
           :

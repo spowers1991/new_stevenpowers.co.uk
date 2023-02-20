@@ -13,10 +13,9 @@ const data = {
     username: username,
     password: password,
 };
-    
-axios.post('http://localhost:5000/login', data)
+console.log(process.env);
+axios.post(`${process.env.REACT_APP_BASEURL}/login`, data)
     .then(response => {
-    console.log(response.data);
     const token = response.data.token;
     localStorage.setItem('token', token); // Store the token in local storage
     props.logIn(token)
