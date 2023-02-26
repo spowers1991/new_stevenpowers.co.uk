@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import Heading from './utility/Heading'
-import CaptionReveal from './utility/CaptionReveal'
+import Heading from './utils/Heading'
+import CaptionReveal from './utils/CaptionReveal'
 import { useLocation } from "react-router-dom";
 
 const Page = (props) => {

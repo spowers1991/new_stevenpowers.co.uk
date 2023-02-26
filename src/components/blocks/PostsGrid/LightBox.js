@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../../utility/Button';
+import Button from '../../utils/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Keyboard, Mousewheel } from "swiper";
 import { HashLink as Link } from 'react-router-hash-link';
@@ -93,7 +93,7 @@ const LightBox = (props) => {
                                                 </div>
                                             </div>
                                             <p className='!font-inter py-2 sm:py-8 text-sm text-[#222]'>
-                                                {post.description}
+                                                {post.content}
                                             </p> 
                                             <div className="flex gap-4 w-full">
                                                 <Button solid={true} target="/pages/contact" text={`Add to cart `+(index+1)} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
 import Post from "./Post";
-import SearchFilter from './SearchFilter';
+import SearchFilter from '../../utils/SearchFilter';
 import LightBox from "./LightBox";
 
 const PostsGrid = (props) => {  
@@ -38,13 +38,13 @@ const [filteredData, setFilteredData] = useState([]);
 
 useEffect(() => {
     setFilteredData(posts?.filter(post => post?.title.toLowerCase().includes(searchTerm.toLowerCase())));
-  }, [searchTerm, posts]);
+}, [searchTerm, posts]);
 
 return (  
     <div>  
-        <div className={`mt-8 ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300`}>
+        <div className={`max-w-5xl mx-auto mt-8 px-10 ${ state ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[5px]'} transform ease-in-out transition-all duration-200 delay-300`}>
             <SearchFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} filteredData={filteredData} setFilteredData={setFilteredData} posts={posts} />
-            <div className="max-w-5xl mx-auto px-10 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-x-8 gap-y-16 md:gap-y-16 mt-10">
+            <div className="mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-x-8 gap-y-16 md:gap-y-16 mt-10">
                 {filteredData && filteredData.map((post, index) => (
                     <Post index={index} post={post} key={index} SwiperSyncedKey={SwiperSyncedKey} HandlePopUp={HandlePopUp} open={open}/>
                 ))

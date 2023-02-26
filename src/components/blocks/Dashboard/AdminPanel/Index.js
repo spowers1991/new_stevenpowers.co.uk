@@ -1,5 +1,6 @@
 import React from 'react';
-import UserApprove from './UserApprove';
+import UserApprove from './UserApprove/Index';
+import Posts from './Posts/Index';
 
 const AdminPanel = () => { 
   
@@ -10,6 +11,7 @@ const AdminPanel = () => {
         <h1 className='text-2xl font-semibold mb-10'>
             Admin Panel
         </h1>
+        <Posts />
       </div>
       <UserApprove />
     </div>

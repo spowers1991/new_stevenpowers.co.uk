@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation  } from 'react-router-dom';
-import Button from './utility/Button';
+import Button from './utils/Button';
 
 
 const Header = () => {  
@@ -9,10 +9,10 @@ const Header = () => {
 
     return (
           
-        <header className='flex w-full py-10 max-w-5xl px-10 mx-auto'>
+        <header className='flex w-full pb-10 max-w-5xl px-10 mx-auto'>
             <ul className='ml-auto flex gap-9 '>
                 <li>
-                    <Button target="/" text="Json data" large={true} location={pathname} />
+                    <Button target="/" text="Blog" large={true} location={pathname} />
                 </li>
                 <li>
                     <Button target="/webgl" text="WebGL" large={true} location={pathname}/>

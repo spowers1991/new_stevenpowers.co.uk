@@ -13,7 +13,6 @@ const data = {
     username: username,
     password: password,
 };
-console.log(process.env);
 axios.post(`${process.env.REACT_APP_BASEURL}/login`, data)
     .then(response => {
     const token = response.data.token;

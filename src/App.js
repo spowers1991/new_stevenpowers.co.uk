@@ -7,15 +7,18 @@ import Home from './pages/home'
 import Contact from './pages/contact'
 import WebGL from './pages/webgl'
 import Account from './pages/account'
+import axios from 'axios';
 
 function App() {
 
   const [posts, setPosts] = useState(undefined);
     useEffect(() => {
-    fetch('https://dummyjson.com/products?limit=10')
-        .then(res => res.json())
-        .then(data => setPosts(data.products));
-    }, []);
+      const fetchPosts = async () => {
+      const response = await axios.get(`${process.env.REACT_APP_BASEURL}/posts`);
+      setPosts(response.data);
+      };
+      fetchPosts();
+  });
 
   return (
     <div>
