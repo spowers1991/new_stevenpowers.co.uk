@@ -7,12 +7,13 @@ const UserApprove = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-        const response = await axios.get(`${process.env.REACT_APP_BASEURL}/users`);
+        const response = await axios.get(`${process.env.REACT_APP_BASEURL}/get-users`);
         setUsers(response.data);
         };
         fetchUsers();
     }, []);
 
+    
     const approveUser = async (this_id) => {
    
     const data = {
@@ -20,7 +21,7 @@ const UserApprove = () => {
         response: 'approved'
     };
         
-    axios.post(`${process.env.REACT_APP_BASEURL}/update`, data)
+    axios.post(`${process.env.REACT_APP_BASEURL}/update-user`, data)
         .then(response => {
         //console.log(response.data);
         })
@@ -36,7 +37,7 @@ const UserApprove = () => {
           response: 'declined'
       };
           
-      axios.post(`${process.env.REACT_APP_BASEURL}/update`, data)
+      axios.post(`${process.env.REACT_APP_BASEURL}/update-user`, data)
           .then(response => {
           console.log(response.data);
           })

@@ -20,7 +20,7 @@ const data = {
     account_level: 'requested'
 };
     
-axios.post(`${process.env.REACT_APP_BASEURL}/user`, data)
+axios.post(`${process.env.REACT_APP_BASEURL}/user-registration`, data)
     .then(response => {
         setuserSubmissionSuccess(true);
         setuserSubmissionFailure(false);
@@ -76,7 +76,7 @@ return (
             User already taken please choose another username or email
         </div>
         }
-        <button className={`group bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:bg-black hover:text-white outline-none ${submissionSuccess === true && 'scale-x-100 pointer-events-none'}`} type="submit">
+        <button className={`group bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:text-white outline-none ${submissionSuccess === true && 'scale-x-100 pointer-events-none bg-[green]'}`} type="submit">
             {submissionSuccess === true ?
                 <span>
                     Request submitted

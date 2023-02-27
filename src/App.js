@@ -14,11 +14,11 @@ function App() {
   const [posts, setPosts] = useState(undefined);
     useEffect(() => {
       const fetchPosts = async () => {
-      const response = await axios.get(`${process.env.REACT_APP_BASEURL}/posts`);
+      const response = await axios.get(`${process.env.REACT_APP_BASEURL}/get-posts`);
       setPosts(response.data);
       };
       fetchPosts();
-  });
+  },[]);
 
   return (
     <div>

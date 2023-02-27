@@ -1,6 +1,6 @@
 import React from 'react';
 import UserApprove from './UserApprove/Index';
-import Posts from './Posts/Index';
+import Posts from './Blog/Index';
 
 const AdminPanel = () => { 
   

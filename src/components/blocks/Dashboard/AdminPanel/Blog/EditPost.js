@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const CreatePost = () => { 
+const EditPost = (props) => { 
 
-  const [title, setTitle] = useState('');
-  const [featuredImage, setFeaturedImage] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState(props.post.title);
+  const [featuredImage, setFeaturedImage] = useState(props.post.featuredImage);
+  const [content, setContent] = useState(props.post.content);
   const [submissionSuccess, setuserSubmissionSuccess] = useState('false');
   const [submissionFailure, setuserSubmissionFailure] = useState('false');
-  
+
   const handleSubmit = async (e) => {
   e.preventDefault();
   
   const data = {
+      id: props.post._id,
       title: title,
       featuredImage: featuredImage,
       content: content
   };
       
-  axios.post(`${process.env.REACT_APP_BASEURL}/post`, data)
+  axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, data)
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
+          props.updatePost(props.post, data.content) 
       })
       .catch(error => {
       setuserSubmissionFailure(true);
@@ -30,7 +32,7 @@ const CreatePost = () => {
       console.error(error);
       });
   };
-
+  
   return (
     <div className='flex gap-5 mt-10'>
         <form className="w-full" onSubmit={handleSubmit}>
@@ -72,11 +74,11 @@ const CreatePost = () => {
           <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:bg-black hover:text-white outline-none ${submissionSuccess === true && 'scale-x-100 pointer-events-none'}`} type="submit">
               {submissionSuccess === true ?
                   <span>
-                      Post created
+                      Post Updated
                   </span>
                   :
                   <span>
-                      Create post
+                      Update post
                   </span>
               }
               <div className={`bg-white absolute bottom-0 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-100 ${submissionSuccess === true && 'scale-x-100'} transition transition-gpu duration-200`}/>        
@@ -86,4 +88,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

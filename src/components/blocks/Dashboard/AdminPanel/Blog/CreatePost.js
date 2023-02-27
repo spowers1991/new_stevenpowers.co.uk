@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const EditPost = (post) => { 
+const CreatePost = () => { 
 
   const [title, setTitle] = useState('');
   const [featuredImage, setFeaturedImage] = useState('');
@@ -18,7 +18,7 @@ const EditPost = (post) => {
       content: content
   };
       
-  axios.post(`${process.env.REACT_APP_BASEURL}/post`, data)
+  axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, data)
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
@@ -30,7 +30,7 @@ const EditPost = (post) => {
       console.error(error);
       });
   };
-  
+
   return (
     <div className='flex gap-5 mt-10'>
         <form className="w-full" onSubmit={handleSubmit}>
@@ -40,7 +40,7 @@ const EditPost = (post) => {
               id="title"
               name="title"
               placeholder="Title"
-              value={post.data.title}
+              value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
           />
@@ -60,7 +60,7 @@ const EditPost = (post) => {
               id="content"
               name="content"
               placeholder="Content"
-              value={post.data.content}
+              value={content}
               onChange={(e) => setContent(e.target.value)}
               required
           />
@@ -72,11 +72,11 @@ const EditPost = (post) => {
           <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:bg-black hover:text-white outline-none ${submissionSuccess === true && 'scale-x-100 pointer-events-none'}`} type="submit">
               {submissionSuccess === true ?
                   <span>
-                      Post Updated
+                      Post created
                   </span>
                   :
                   <span>
-                      Update post
+                      Create post
                   </span>
               }
               <div className={`bg-white absolute bottom-0 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-100 ${submissionSuccess === true && 'scale-x-100'} transition transition-gpu duration-200`}/>        
@@ -86,4 +86,4 @@ const EditPost = (post) => {
   );
 };
 
-export default EditPost;
+export default CreatePost;
