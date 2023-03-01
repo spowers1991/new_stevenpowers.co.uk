@@ -22,7 +22,7 @@ const EditPost = (props) => {
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
-          props.updatePost(props.post, content) 
+          props.updatePost(props.post, content, featuredImage) 
       })
       .catch(error => {
       setuserSubmissionFailure(true);

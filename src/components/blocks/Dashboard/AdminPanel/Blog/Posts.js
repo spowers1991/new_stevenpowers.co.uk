@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import axios from 'axios';
 import EditPost from './EditPost';
 import DeletePost from './DeletePost';
@@ -7,6 +7,16 @@ import SearchFilter from '../../../../utils/SearchFilter';
 const Posts = (props) => {  
 
     const [posts, setPosts] = useState([]);
+
+    // This function updates content in the view if the user edits a post, it for UX and makes no requests
+    const updatePost = useCallback((editedPost, newContent, newImage) => {
+        const post = posts.find((post) => post._id === editedPost._id);
+        if (post) {
+          post.content = newContent;
+          post.featuredImage = newImage;
+        }
+        return post;
+    }, [posts]);  
   
     useEffect(() => {
         const fetchPosts = async () => {
@@ -14,17 +24,7 @@ const Posts = (props) => {
         setPosts(response.data);
         };
         fetchPosts();
-    },[]);
-
-    // This function updates content in the view if the user edits a post, it for UX and makes no requests
-    function updatePost(editedPost, newContent) {
-        const post = posts.find((post) => post._id === editedPost._id);
-        if (post) {
-          post.content = newContent;
-        }
-        return post;
-      }      
-      
+    },[updatePost]);  
 
     const [selectedPostId, setSelectedPostId] = useState(undefined);
 
