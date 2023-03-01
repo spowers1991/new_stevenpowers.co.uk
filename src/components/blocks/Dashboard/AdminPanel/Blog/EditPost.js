@@ -4,7 +4,7 @@ import axios from 'axios';
 const EditPost = (props) => { 
 
   const [title, setTitle] = useState(props.post.title);
-  const [featuredImage, setFeaturedImage] = useState(props.post.featuredImage);
+  const [featuredImage, setFeaturedImage] = useState('');
   const [content, setContent] = useState(props.post.content);
   const [submissionSuccess, setuserSubmissionSuccess] = useState('false');
   const [submissionFailure, setuserSubmissionFailure] = useState('false');
@@ -12,18 +12,17 @@ const EditPost = (props) => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   
-  const data = {
-      id: props.post._id,
-      title: title,
-      featuredImage: featuredImage,
-      content: content
-  };
+  const formData = new FormData();
+  formData.append('id', props.post._id);
+  formData.append('title', title);
+  formData.append('featuredImage', featuredImage);
+  formData.append('content', content);
       
-  axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, data)
+  axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, formData)
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
-          props.updatePost(props.post, data.content) 
+          props.updatePost(props.post, content) 
       })
       .catch(error => {
       setuserSubmissionFailure(true);
@@ -34,7 +33,8 @@ const EditPost = (props) => {
   };
   
   return (
-    <div className='flex gap-5 mt-10'>
+    <div className='gap-5 mt-10'>
+        <img className={`w-[250px] rounded ${props.post?.featuredImage ? 'block' : 'hidden'}`} src={`${process.env.REACT_APP_BASEURL}/${props.post?.featuredImage}`} alt="" />
         <form className="w-full" onSubmit={handleSubmit}>
           <input
               className={'focus:outline-0 duration-200 rounded block w-full my-8 p-2  border-2 focus:border-black hover:border-black border-solid focus:border-solid placeholder-shown:border-dashed focus:outline-none focus:placeholder:text-black'}
@@ -46,14 +46,16 @@ const EditPost = (props) => {
               onChange={(e) => setTitle(e.target.value)}
               required
           />
+          <label className='font-bold'>
+            Image upload:
+          </label>
           <input
-              className={'focus:outline-0 duration-200 rounded block w-full my-8 p-2  border-2 focus:border-black hover:border-black border-solid focus:border-solid placeholder-shown:border-dashed focus:outline-none focus:placeholder:text-black'}
+              className={'focus:outline-0 duration-200 rounded block w-full mt-2 mb-8 p-2  border-2 focus:border-black hover:border-black border-solid focus:border-solid placeholder-shown:border-dashed focus:outline-none focus:placeholder:text-black'}
               type="file"
               id="featuredImage"
               name="featuredImage"
               placeholder="Featured Image"
-              value={featuredImage}
-              onChange={(e) => setFeaturedImage(e.target.value)}
+              onChange={(e) => setFeaturedImage(e.target.files[0])}
           />
           <textarea
               className={'focus:outline-0 duration-200 rounded block w-full my-8 p-2  border-2 focus:border-black hover:border-black border-solid focus:border-solid placeholder-shown:border-dashed focus:outline-none focus:placeholder:text-black'}
@@ -71,7 +73,7 @@ const EditPost = (props) => {
               There was an error submitting your request
           </div>
           }
-          <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:bg-black hover:text-white outline-none ${submissionSuccess === true && 'scale-x-100 pointer-events-none'}`} type="submit">
+          <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none ${submissionSuccess === true && 'pointer-events-none bg-[green]'}`} type="submit">
               {submissionSuccess === true ?
                   <span>
                       Post Updated

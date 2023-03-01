@@ -1,27 +1,37 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const CreatePost = () => { 
+const CreatePost = (props) => { 
 
   const [title, setTitle] = useState('');
   const [featuredImage, setFeaturedImage] = useState('');
   const [content, setContent] = useState('');
   const [submissionSuccess, setuserSubmissionSuccess] = useState('false');
   const [submissionFailure, setuserSubmissionFailure] = useState('false');
+
+  function resetForm() {
+    const timer = setTimeout(() => {
+        setTitle('')
+        setFeaturedImage(null)
+        setContent('')
+        setuserSubmissionSuccess('')
+      }, 2000);
+      return () => clearTimeout(timer);
+  }
   
   const handleSubmit = async (e) => {
   e.preventDefault();
   
-  const data = {
-      title: title,
-      featuredImage: featuredImage,
-      content: content
-  };
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('featuredImage', featuredImage);
+  formData.append('content', content);
       
-  axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, data)
+  axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, formData)
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
+          resetForm();
       })
       .catch(error => {
       setuserSubmissionFailure(true);
@@ -33,7 +43,7 @@ const CreatePost = () => {
 
   return (
     <div className='flex gap-5 mt-10'>
-        <form className="w-full" onSubmit={handleSubmit}>
+        <form className="w-full" onSubmit={handleSubmit} encType="multipart/form-data">
           <input
               className={'focus:outline-0 duration-200 rounded block w-full my-8 p-2  border-2 focus:border-black hover:border-black border-solid focus:border-solid placeholder-shown:border-dashed focus:outline-none focus:placeholder:text-black'}
               type="text"
@@ -50,8 +60,7 @@ const CreatePost = () => {
               id="featuredImage"
               name="featuredImage"
               placeholder="Featured Image"
-              value={featuredImage}
-              onChange={(e) => setFeaturedImage(e.target.value)}
+              onChange={(e) => setFeaturedImage(e.target.files[0])}
           />
           <textarea
               className={'focus:outline-0 duration-200 rounded block w-full my-8 p-2  border-2 focus:border-black hover:border-black border-solid focus:border-solid placeholder-shown:border-dashed focus:outline-none focus:placeholder:text-black'}
@@ -69,7 +78,7 @@ const CreatePost = () => {
               There was an error submitting your request
           </div>
           }
-          <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:bg-black hover:text-white outline-none ${submissionSuccess === true && 'scale-x-100 pointer-events-none'}`} type="submit">
+          <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:text-white outline-none ${submissionSuccess === true && 'pointer-events-none bg-[green]'}`} type="submit">
               {submissionSuccess === true ?
                   <span>
                       Post created

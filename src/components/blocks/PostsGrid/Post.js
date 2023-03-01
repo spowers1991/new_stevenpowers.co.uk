@@ -6,7 +6,8 @@ return (
     <div id={'post-'+props.index} className={`duration-200 rounded border-2 border-dashed hover:border-solid group flex flex-col cursor-pointer p-4 ${(props.open && props.index === props.SwiperSyncedKey && '!border-solid ')}`} onClick={() => props.HandlePopUp(props.index)} data={props.post?.title} key={props.index} role="presentation">
         <div className="relative overflow-hidden mb-6">
             <div className={`rounded absolute w-full h-full bg-black duration-300 opacity-0 group-hover:opacity-30 ${(props.open && props.index === props.SwiperSyncedKey && 'opacity-30')}`} />
-            <img className="w-full rounded" src="https://via.placeholder.com/224x224" alt="" />
+            <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL}/${props.post.featuredImage}`} alt="" />
+            {console.log(props.post)}
         </div>
         <div className="flex items-center">
             <h4 className='w-1/2 mr-auto group relative !font-inter mb-auto pb-4 text-base font-semibold'>

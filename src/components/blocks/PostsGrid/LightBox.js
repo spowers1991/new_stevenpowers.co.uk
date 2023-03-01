@@ -71,13 +71,13 @@ const LightBox = (props) => {
                         :
                             <div to={`#post-`+index} className="absolute w-full h-full inset-0 opacity-40 bg-black z-10 flex items-center" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}} role="presentation" />                        
                         }
-                           <div className={`drop-shadow-2xl  rounded relative inset-0 w-[95%] h-[95%] sm:w-[80%] sm:max-w-5xl h-fit-content sm:h-[fit-content] bg-white p-8 m-auto overflow-hidden duration-150 z-30`} >
+                           <div className={`drop-shadow-2xl  rounded relative inset-0 w-[95%] h-[85%] sm:w-[80%] sm:max-w-5xl h-fit-content sm:h-[fit-content] bg-white p-8 m-auto overflow-hidden duration-150 z-30`} >
                                 <div className="block sm:flex sm:flex-col cursor-pointer" role="presentation">
                                     <div className="block sm:flex sm:flex-row gap-8">
                                         <div className="w-full sm:w-1/2">
                                             <div className="relative overflow-hidden mb-6">
                                                 <div className="rounded absolute w-full h-full  duration-300 opacity-0 group-hover:opacity-30" />
-                                                <img className="w-full rounded" src="https://via.placeholder.com/224x224" alt="" />
+                                                <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL}/${post.featuredImage}`} alt="" />
                                             </div>
                                         </div>
                                         <div className="w-full sm:w-1/2 flex flex-col">

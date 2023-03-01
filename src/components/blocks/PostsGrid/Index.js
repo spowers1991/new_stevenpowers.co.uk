@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; 
+import axios from 'axios';
 import Post from "./Post";
 import SearchFilter from '../../utils/SearchFilter';
 import LightBox from "./LightBox";
 
-const PostsGrid = (props) => {  
+const PostsGrid = () => {  
 
 const location = useLocation();
 const [state, setState] = useState(false)
@@ -13,7 +14,15 @@ useEffect(() => {
     setState(true)
 }, [location]);
 
-const posts = props.postData
+const [posts, setPosts] = useState(undefined);
+
+useEffect(() => {
+  const fetchPosts = async () => {
+  const response = await axios.get(`${process.env.REACT_APP_BASEURL}/get-posts`);
+  setPosts(response.data);
+  };
+  fetchPosts();
+},[]);
 
 const [open, setOpen] = useState(false)
 function handleSetOpen() {
