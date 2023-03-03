@@ -54,7 +54,7 @@ const UserApprove = () => {
 
     return (
       users.some(user => user.account_level === 'admin') &&
-      <div className='w-1/3'>
+      <div className='w-full sm:w-1/3'>
         <div className='border-2 border-black rounded'>        
           <h3 className='text-base font-semibold mb-5 bg-black text-white p-3'>
             New user requests

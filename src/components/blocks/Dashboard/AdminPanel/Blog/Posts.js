@@ -60,17 +60,17 @@ const Posts = (props) => {
             <SearchFilter searchTerm={searchTerm} setSearchTerm={setSearchTerm} filteredData={filteredData} setFilteredData={setFilteredData} posts={posts} />
             {filteredData && filteredData.map((post, index) => 
                 <div key={post._id} className="mb-5 border-b-2 pb-5">
-                    <div className='flex w-full gap-3 items-center'>
+                    <div className='block sm:flex w-full gap-3 items-center'>
                     <h3 className='font-semibold text-xl'>
                         {
                         post['title']
                         }
                     </h3>
-                    <div className='flex w-[50%] ml-auto gap-5'>
+                    <div className='flex w-full sm:w-[50%] mt-5 sm:mt-0 ml-auto gap-5'>
                         <button onClick={() => {setSelectedPostId(post._id);closeThisPost(post._id)}} className="w-[50%] mt-auto ml-auto text-xs group bg-[green] text-white rounded submit-button relative block p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none">
                             {(selectedPostId && selectedPostId === post._id === true) ?
                             <span>
-                                Stop editing Post
+                                Stop editing
                             </span>
                             :
                             <span>
