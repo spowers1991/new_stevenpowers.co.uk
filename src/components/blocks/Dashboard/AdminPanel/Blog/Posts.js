@@ -8,23 +8,27 @@ const Posts = (props) => {
 
     const [posts, setPosts] = useState([]);
 
+    const fetchPosts = useCallback(async () => {
+        const response = await axios.get(`${process.env.REACT_APP_BASEURL}/get-posts`);
+        setPosts(response.data);
+      }, []);
+      
+      useEffect(() => {
+        fetchPosts();
+      }, [fetchPosts]);
+
     // This function updates content in the view if the user edits a post, it for UX and makes no requests
-    const updatePost = useCallback((editedPost, newContent, newImage) => {
+    const updatePost = useCallback((editedPost, newContent, newImages) => {
+        fetchPosts();
         const post = posts.find((post) => post._id === editedPost._id);
         if (post) {
           post.content = newContent;
-          post.featuredImage = newImage;
+          post.images = newImages;
         }
         return post;
-    }, [posts]);  
+    }, [posts, fetchPosts]); 
+
   
-    useEffect(() => {
-        const fetchPosts = async () => {
-        const response = await axios.get(`${process.env.REACT_APP_BASEURL}/get-posts`);
-        setPosts(response.data);
-        };
-        fetchPosts();
-    },[updatePost]);  
 
     const [selectedPostId, setSelectedPostId] = useState(undefined);
 

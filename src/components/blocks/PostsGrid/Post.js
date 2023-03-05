@@ -6,7 +6,7 @@ return (
     <div id={'post-'+props.index} className={`duration-200 rounded border-2 border-dashed hover:border-solid group flex flex-col cursor-pointer p-4 ${(props.open && props.index === props.SwiperSyncedKey && '!border-solid ')}`} onClick={() => props.HandlePopUp(props.index)} data={props.post?.title} key={props.index} role="presentation">
         <div className="relative overflow-hidden mb-6">
             <div className={`rounded absolute w-full h-full bg-black duration-300 opacity-0 group-hover:opacity-30 ${(props.open && props.index === props.SwiperSyncedKey && 'opacity-30')}`} />
-            <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL}/${props.post.featuredImage}`} alt="" />
+            <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL}/${props.post.images[0]}`} alt="" />
         </div>
         <div className="flex items-center">
             <h4 className='w-1/2 mr-auto group relative !font-inter mb-auto pb-4 text-base font-semibold'>
@@ -15,7 +15,7 @@ return (
             </h4>
             <div className="flex w-1/2 self-end">
                 <span className='text-xs ml-auto text-[#aaa]'>
-                    10 mins
+                    {props.post.images.length} Photos
                 </span>
             </div>
         </div>

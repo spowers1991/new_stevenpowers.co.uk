@@ -77,7 +77,7 @@ const LightBox = (props) => {
                                         <div className="w-full sm:w-1/2">
                                             <div className="relative overflow-hidden mb-6">
                                                 <div className="rounded absolute w-full h-full  duration-300 opacity-0 group-hover:opacity-30" />
-                                                <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL}/${post.featuredImage}`} alt="" />
+                                                <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL+post.images[0]}`} alt="" />
                                             </div>
                                         </div>
                                         <div className="w-full sm:w-1/2 flex flex-col">
@@ -87,8 +87,8 @@ const LightBox = (props) => {
                                                     <div className={`bg-[#aaa] absolute bottom-0 left-0 w-10 h-[2px] scale-x-[0.25]  transition transition-gpu duration-200`}/>
                                                 </h4>
                                                 <div className="flex w-1/4">
-                                                    <span className='ml-auto text-2xl sm:text-3xl text-[#aaa]'>
-                                                        £{post.price}
+                                                    <span className='ml-auto text-xs sm:text-base text-[#aaa]'>
+                                                        {post.images.length} Photos
                                                     </span>
                                                 </div>
                                             </div>
@@ -96,8 +96,8 @@ const LightBox = (props) => {
                                                 {post.content}
                                             </p> 
                                             <div className="flex gap-4 w-full">
-                                                <Button solid={true} target="/pages/contact" text={`Add to cart `+(index+1)} />
-                                                <Button target="/pages/contact" text={`Learn more `+(index+1)} />
+                                                <Button solid={true} target="/pages/contact" text={`View `+(index+1)+` gallery`} />
+                                                <Button target="/pages/contact" text={`Share `} />
                                             </div>
                                         </div>
                                     </div> 
