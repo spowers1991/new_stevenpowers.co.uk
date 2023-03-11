@@ -1,7 +1,7 @@
 .progress {
-    height: 4px !important;
     background: #000 !important;
     border-radius: 10px !important;
+    right: 0 !important;
   }
   
   .swiper-pagination-progressbar-fill {

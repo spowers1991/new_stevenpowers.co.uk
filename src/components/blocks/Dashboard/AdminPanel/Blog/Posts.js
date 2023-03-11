@@ -28,7 +28,6 @@ const Posts = (props) => {
         return post;
     }, [posts, fetchPosts]); 
 
-  
 
     const [selectedPostId, setSelectedPostId] = useState(undefined);
 
@@ -93,7 +92,7 @@ const Posts = (props) => {
                     <DeletePost post={deletePost && deletePost} postDelete={postDelete} removeElement={removeElement} index={index}/>
                     }
                     {(selectedPostId && selectedPostId === post._id) &&
-                    <EditPost post={post} updatePost={updatePost}/>
+                    <EditPost post={post} updatePost={updatePost} setSelectedPostId={setSelectedPostId}/>
                     }  
                 </div> 
             )}         

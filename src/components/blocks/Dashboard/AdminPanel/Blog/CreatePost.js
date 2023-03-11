@@ -15,6 +15,7 @@ const CreatePost = (props) => {
         setTitle('')
         setFiles(null)
         setContent('')
+        setAddedImages([])
         setuserSubmissionSuccess('')
       }, 1000);
       return () => clearTimeout(timer);

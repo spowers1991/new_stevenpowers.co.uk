@@ -12,9 +12,12 @@ const EditPost = (props) => {
   const [submissionFailure, setuserSubmissionFailure] = useState('false');
 
   function resetForm() {
+    props.setSelectedPostId(null)
+    setuserSubmissionSuccess(true);
     const timer = setTimeout(() => {
+        props.setSelectedPostId(props.post._id)
         setuserSubmissionSuccess('')
-      }, 1500);
+      }, 50);
       return () => clearTimeout(timer);
   }
 
@@ -71,7 +74,7 @@ const handleDeleteImage = (post, index, type) => {
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
-          props.updatePost(props.post, content, files)
+          props.updatePost(props.post, content, savedImages)
           resetForm() 
       })
       .catch(error => {
