@@ -59,7 +59,7 @@ const CreatePost = (props) => {
   
   const formData = new FormData();
   formData.append('title', title);
-  for(let i = 0; i < files.length; i++) {
+  for(let i = 0; i < files?.length; i++) {
     formData.append('images', files[i]);
   }
   formData.append('content', content);

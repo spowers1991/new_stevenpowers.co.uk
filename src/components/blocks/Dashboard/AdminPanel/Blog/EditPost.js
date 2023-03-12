@@ -64,7 +64,7 @@ const handleDeleteImage = (post, index, type) => {
   const formData = new FormData();
   formData.append('id', props.post._id);
   formData.append('title', title);
-  for(let i = 0; i < files.length; i++) {
+  for(let i = 0; i < files?.length; i++) {
     formData.append('images', files[i]);
   }
   formData.append('previouslyUploadedImages', savedImages);
@@ -74,7 +74,7 @@ const handleDeleteImage = (post, index, type) => {
       .then(response => {
           setuserSubmissionSuccess(true);
           setuserSubmissionFailure(false);
-          props.updatePost(props.post, content, savedImages)
+          props.updatePost(props.post, title, content, savedImages)
           resetForm() 
       })
       .catch(error => {

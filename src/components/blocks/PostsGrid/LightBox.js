@@ -44,19 +44,28 @@ const LightBox = (props) => {
     const swiperRefs = useRef([]);
       
     const addSwiperRef = (swiper) => {
-        swiperRefs.current.push(swiper);
+        if (swiper && !swiper.destroyed) {
+            swiperRefs.current.push(swiper);
+        }
+        swiperRefs.current = swiperRefs.current.filter(swiper => swiper.destroyed !== true);
     };
 
     const swiperGalleryRefs = useRef([]);
       
     const addSwiperGalleryRef = (swiper) => {
-        swiperGalleryRefs.current.push(swiper);
+        if (swiper && !swiper.destroyed) {
+            swiperGalleryRefs.current.push(swiper);
+        }
+        swiperGalleryRefs.current = swiperGalleryRefs.current.filter(swiper => swiper.destroyed !== true);
     };
 
     const swiperThumbRefs = useRef([]);
       
     const addSwiperThumbsRef = (swiper) => {
-        swiperThumbRefs.current.push(swiper);
+        if (swiper && !swiper.destroyed) {
+            swiperThumbRefs.current.push(swiper);
+        }
+        swiperThumbRefs.current = swiperThumbRefs.current.filter(swiper => swiper.destroyed !== true);
     };
 
     const [activeThumb, setActiveThumb] = useState(0);
@@ -99,10 +108,10 @@ const LightBox = (props) => {
                         :
                             <div to={`#post-`+index} className="absolute w-full h-full inset-0 opacity-40 bg-black z-10 flex items-center" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}} role="presentation" />                        
                         }
-                           <div className={`drop-shadow-2xl  rounded relative inset-0 w-[95%] h-[85%] sm:w-[80%] sm:max-w-5xl h-fit-content sm:h-[fit-content] bg-white p-8 m-auto overflow-hidden duration-150 z-30`} >
+                           <div className={`drop-shadow-2xl rounded relative inset-0 w-[95%] h-[85%] sm:max-w-[600px] h-fit-content sm:h-[fit-content] bg-white p-8 m-auto overflow-hidden duration-150 z-30`} >
                                 <div className="block sm:flex sm:flex-col cursor-pointer" role="presentation">
-                                    <div className="block sm:flex sm:flex-col gap-8">
-                                        <div className="w-full ">
+                                    <div className="m-auto max-w-full block sm:flex sm:flex-col gap-2 xl:gap-8">
+                                        <div className="w-full">
                                             <div className="relative overflow-hidden mb-6">
                                                 <div className="rounded absolute w-full h-full  duration-300 opacity-0 group-hover:opacity-30" />
                                                 <Swiper className={`relative w-full h-full`}
@@ -120,7 +129,7 @@ const LightBox = (props) => {
                                                         >                                                   
                                                         {post?.images && post?.images.map((image, index) => (
                                                             <SwiperSlide key={index} className="transition duration-300 self-end cursor-pointer">    
-                                                                <img className="object-cover w-full h-full max-h-[400px] rounded" src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
+                                                                <img className="object-cover w-full h-full rounded" src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
                                                             </SwiperSlide>
                                                         ))}                                           
                                                     </Swiper>
@@ -137,17 +146,15 @@ const LightBox = (props) => {
                                                     >
                                                     {post?.images && post?.images.map((image, index) => (
                                                         <SwiperSlide key={index} className="transition duration-300 self-end cursor-pointer" onClick={() => {swiperGalleryRefs.current[key].slideTo(index); swiperThumbRefs.current[key].slideTo(index);}}>    
-                                                            {({ isActive }) => (
-                                                                <img className={`${activeThumb === index ? 'border-2 border-black' : ''} object-cover rounded max-h-[50px] w-full`} src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
-                                                            )}
+                                                            <img className={`${activeThumb === index ? 'border-2 border-black' : ''} object-cover rounded max-h-[50px] xl:max-h-[100px] w-full`} src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />                                                        
                                                         </SwiperSlide>
                                                     ))} 
                                                 </Swiper>
                                             </div>
                                         </div>
-                                        <div className="w-full flex flex-col">
+                                        <div className="w-full flex flex-col lg:hidden xl:flex">
                                             <div className="flex">
-                                                <h4 className='w-3/4 mr-auto group relative !font-inter mb-auto pb-3 sm:pb-8 text-2xl sm:text-3xl font-semibold'>
+                                                <h4 className='w-3/4 mr-auto group relative !font-inter mb-auto pb-3 xl:pb-8 text-2xl sm:text-3xl font-semibold'>
                                                     {post.title}
                                                     <div className={`bg-[#aaa] absolute bottom-0 left-0 w-10 h-[2px] scale-x-[0.25]  transition transition-gpu duration-200`}/>
                                                 </h4>
@@ -157,7 +164,7 @@ const LightBox = (props) => {
                                                     </span>
                                                 </div>
                                             </div>
-                                            <p className='!font-inter py-2 sm:py-8 text-sm text-[#222]'>
+                                            <p className='!font-inter pt-3 pb-6 xl:py-8 text-sm text-[#222]'>
                                                 {post.content}
                                             </p> 
                                             <div className="flex gap-4 w-full">

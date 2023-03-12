@@ -3,7 +3,7 @@ import React from 'react';
 const Post = (props) => {
 
 return (
-    <div id={'post-'+props.index} className={`duration-200 rounded border-2 border-dashed hover:border-solid group flex flex-col cursor-pointer p-4 ${(props.open && props.index === props.SwiperSyncedKey && '!border-solid ')}`} onClick={() => props.HandlePopUp(props.index)} data={props.post?.title} key={props.index} role="presentation">
+    <div id={'post-'+props.index} className={`duration-200 rounded border-2 border-dashed hover:border-solid group flex flex-col cursor-pointer p-4 ${(props.open && props.index === props.SwiperSyncedKey && '!border-solid ')}`} onClick={() => {props.HandlePopUp(props.index);props.SwiperSyncedKeyCallback(props.index);}} data={props.post?.title} key={props.index} role="presentation">
         <div className="relative overflow-hidden mb-6">
             <div className={`rounded absolute w-full h-full bg-black duration-300 opacity-0 group-hover:opacity-30 ${(props.open && props.index === props.SwiperSyncedKey && 'opacity-30')}`} />
             <img className="w-full rounded" src={`${process.env.REACT_APP_BASEURL}/${props.post.images[0]}`} alt="" />
@@ -20,7 +20,6 @@ return (
             </div>
         </div>
         <p className='!font-inter mb-auto mt-4 pb-4 text-sm text-[#222]'>
-
         </p>
       </div>
     )
