@@ -11,7 +11,7 @@ const CaptionReveal = (props) => {
     }, [location]);
 
     return (        
-        <p className={`text-black ${ state ? "opacity-100 translate-x-0" : "opacity-0 translate-x-[50px]"} transform ease-in-out transition-all duration-300 delay-100`}>
+        <p className={`!font-inter text-black ${ state ? "opacity-100 translate-x-0" : "opacity-0 translate-x-[50px]"} transform ease-in-out transition-all duration-300 delay-100`}>
             {props.caption}
         </p>          
     )

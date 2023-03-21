@@ -56,7 +56,7 @@ const UserApprove = () => {
       users.some(user => user.account_level === 'admin') &&
       <div className='w-full sm:w-1/3'>
         <div className='border-2 border-black rounded'>        
-          <h3 className='text-base font-semibold mb-5 bg-black text-white p-3'>
+          <h3 className='font-inter text-lg font-semibold mb-5 bg-black text-white px-5 py-3'>
             New user requests
           </h3>
           <ul className='p-5'>
@@ -68,11 +68,11 @@ const UserApprove = () => {
                 </span> 
                 {user.username}
                 <div className='flex w-[fit-content] gap-3'>
-                  <button onClick={() => {approveUser(user._id);removeElement(index)} } className="mt-3 ml-auto text-xs group bg-[green] text-white rounded submit-button relative block w-full  p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none">
+                  <button onClick={() => {approveUser(user._id);removeElement(index)} } className="mt-3 tracking-[0.5px] !font-inter ml-auto text-xs group bg-[green] text-white rounded submit-button relative block w-full  p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none">
                       Accept
                       <div className={`bg-white absolute bottom-0 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-100 transition transition-gpu duration-200`}/>        
                   </button>
-                  <button onClick={() => {declineUser(user._id);removeElement(index)}}className="mt-3 mr-auto text-xs group bg-[#f00] text-white rounded submit-button relative block w-full  p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none">
+                  <button onClick={() => {declineUser(user._id);removeElement(index)}}className="mt-3 tracking-[0.5px] !font-inter mr-auto text-xs group bg-[#f00] text-white rounded submit-button relative block w-full  p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none">
                       Decline
                       <div className={`bg-white absolute bottom-0 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-100 transition transition-gpu duration-200`}/>        
                   </button>

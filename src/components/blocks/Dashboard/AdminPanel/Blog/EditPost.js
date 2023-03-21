@@ -106,7 +106,7 @@ const handleDeleteImage = (post, index, type) => {
                     <div key={index} className='group relative h-[min-content]' onClick={() => handleDeleteImage(props.post, index, 'saved_image')}>
                         <div className='absolute flex items-center inset-0 rounded cursor-pointer' >
                             <div className='absolute inset-0 opacity-0 group-hover:opacity-70 bg-black rounded duration-200'/>
-                            <span className='relative text-white m-auto text-4xl opacity-0 group-hover:opacity-100 z-10'>
+                            <span className='!font-short-stack  relative text-white m-auto text-4xl opacity-0 group-hover:opacity-100 z-10'>
                                 X
                             </span>
                         </div>
@@ -119,7 +119,7 @@ const handleDeleteImage = (post, index, type) => {
                     <div key={index} className='group relative h-[min-content]' onClick={() => handleDeleteImage(props.post, index, 'added_image')}>
                         <div className='absolute flex items-center inset-0 rounded cursor-pointer' >
                             <div className='absolute inset-0 opacity-0 group-hover:opacity-70 bg-black rounded duration-200'/>
-                            <span className='relative text-white m-auto text-4xl opacity-0 group-hover:opacity-100 z-10'>
+                            <span className='!font-short-stack relative text-white m-auto text-4xl opacity-0 group-hover:opacity-100 z-10'>
                                 X
                             </span>
                         </div>
@@ -154,7 +154,7 @@ const handleDeleteImage = (post, index, type) => {
               There was an error submitting your request
           </div>
           }
-          <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none ${submissionSuccess === true && 'pointer-events-none bg-[green]'}`} type="submit">
+          <button className={`group tracking-[0.5px] !font-inter text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer  hover:text-white outline-none ${submissionSuccess === true && 'pointer-events-none bg-[green]'}`} type="submit">
               {submissionSuccess === true ?
                   <span>
                       Post Updated

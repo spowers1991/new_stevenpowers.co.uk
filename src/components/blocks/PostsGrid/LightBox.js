@@ -3,6 +3,7 @@ import Button from '../../utils/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Keyboard, Mousewheel } from "swiper";
 import { HashLink as Link } from 'react-router-hash-link';
+import { ReactComponent as RotateIcon } from '../../../images/rotate_icon.svg'
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -75,6 +76,14 @@ const LightBox = (props) => {
         setActiveThumb(activeIndex)
     }
 
+    const [galleryOrientation, setGalleryOrientation] = useState('horizontal');
+    function changeGalleryOrientation() {
+        galleryOrientation === 'horizontal' ?
+        setGalleryOrientation('vertical')
+        :
+        setGalleryOrientation('horizontal')
+    }
+
     return (
         active &&    
         <Swiper className={`!fixed !w-full !h-full !inset-0 !z-50 transition transform duration-300 top-0 ${animate ? 'pointer-events-all opacity-100' : 'pointer-events-none opacity-0'}`}
@@ -94,7 +103,7 @@ const LightBox = (props) => {
             initialSlide={props.keyValue}
             onSlideChange={(e) => {props.SwiperSyncedKeyCallback(e.realIndex);setThumbActive(swiperGalleryRefs.current[e.realIndex])}}
             >  
-            <button className="drop-shadow-2xl  group absolute bg-black text-white rounded-xl py-3 px-5 top-[unset] sm:top-5 bottom-20 sm:bottom-[unset] right-5 text-3xl z-20 hover:bg-white hover:text-black duration-500" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}}>
+            <button className="!font-short-stack drop-shadow-2xl group absolute bg-black text-white rounded-xl py-3 px-5 top-[unset] sm:top-5 bottom-20 sm:bottom-[unset] right-5 text-3xl z-20 hover:bg-white hover:text-black duration-500" onClick={() => {resetLightBox();props.HandlePopUp(props.keyValue)}}>
                 X
                 <div className='bg-white group-hover:bg-black absolute bottom-3 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-[60%] transition transition-gpu duration-200'>
 
@@ -128,8 +137,8 @@ const LightBox = (props) => {
                                                         onSlideChange={(e) => {swiperThumbRefs.current[key].slideTo(e.realIndex); setThumbActive(swiperGalleryRefs.current[key])}}
                                                         >                                                   
                                                         {post?.images && post?.images.map((image, index) => (
-                                                            <SwiperSlide key={index} className="transition duration-300 self-end cursor-pointer">    
-                                                                <img className="object-cover w-full h-full rounded" src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
+                                                            <SwiperSlide key={index} className="transition duration-300 self-end cursor-pointer bg-[#ccc]">    
+                                                                <img className={`${galleryOrientation === 'vertical' ? 'rotate-90' : 'rotate-0' } object-cover w-full h-full rounded`} src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
                                                             </SwiperSlide>
                                                         ))}                                           
                                                     </Swiper>
@@ -154,23 +163,21 @@ const LightBox = (props) => {
                                         </div>
                                         <div className="w-full flex flex-col lg:hidden xl:flex">
                                             <div className="flex">
-                                                <h4 className='w-3/4 mr-auto group relative !font-inter mb-auto pb-3 xl:pb-8 text-2xl sm:text-3xl font-semibold'>
+                                                <h4 className='w-3/4 mr-auto group relative mb-auto pb-3 xl:pb-8 text-2xl sm:text-3xl font-semibold'>
                                                     {post.title}
                                                     <div className={`bg-[#aaa] absolute bottom-0 left-0 w-10 h-[2px] scale-x-[0.25]  transition transition-gpu duration-200`}/>
                                                 </h4>
                                                 <div className="flex w-1/4">
                                                     <span className='ml-auto text-xs sm:text-base text-[#aaa]'>
-                                                        {post.images.length} Photos
+                                                        <div className={` p-2 rounded  ${galleryOrientation === 'horizontal' ? '' : ''} `}>
+                                                            <RotateIcon onClick={() => changeGalleryOrientation() } className={`w-[20px] sm:w-[30px] text-black mx-auto duration-200 ${galleryOrientation === 'horizontal' ? '-rotate-90' : 'rotate-0'}`} />                                          
+                                                        </div>
                                                     </span>
                                                 </div>
                                             </div>
                                             <p className='!font-inter pt-3 pb-6 xl:py-8 text-sm text-[#222]'>
                                                 {post.content}
                                             </p> 
-                                            <div className="flex gap-4 w-full">
-                                                <Button solid={true} target="/pages/contact" text={`View `+(key+1)+` gallery`} />
-                                                <Button target="/pages/contact" text={`Share `} />
-                                            </div>
                                         </div>
                                     </div> 
                                 </div>                         

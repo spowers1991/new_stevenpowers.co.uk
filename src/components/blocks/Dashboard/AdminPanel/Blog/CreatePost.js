@@ -131,7 +131,7 @@ const CreatePost = (props) => {
               There was an error submitting your request
           </div>
           }
-          <button className={`group text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:text-white outline-none ${submissionSuccess === true && 'pointer-events-none bg-[green]'}`} type="submit">
+          <button className={`group !font-inter tracking-[0.5px] text-sm bg-black text-white rounded submit-button relative block w-full my-8 p-2  border-2 border-black font-bold uppercase cursor-pointer hover:text-white outline-none ${submissionSuccess === true && 'pointer-events-none bg-[green]'}`} type="submit">
               {submissionSuccess === true ?
                   <span>
                       Post created

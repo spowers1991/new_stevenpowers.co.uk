@@ -11,7 +11,7 @@ const Heading = (props) => {
     }, [location]);
 
     return (      
-        <h1 className={`text-black text-5xl mb-5 ${ state ? "opacity-100 translate-x-0" : "opacity-0 translate-x-[30px]"} transform ease-in-out transition-all duration-200`}>
+        <h1 className={`font-varela-round text-black text-5xl font-bold mb-5 ${ state ? "opacity-100 translate-x-0" : "opacity-0 translate-x-[30px]"} transform ease-in-out transition-all duration-200`}>
             {props.title}
         </h1>        
     )
