@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Button from '../../utils/Button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Keyboard, Mousewheel } from "swiper";
 import { HashLink as Link } from 'react-router-hash-link';
