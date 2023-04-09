@@ -11,6 +11,7 @@ const CreatePost = (props) => {
   const [submissionFailure, setuserSubmissionFailure] = useState('false');
 
   function resetForm() {
+    setuserSubmissionSuccess(true)
     const timer = setTimeout(() => {
         setTitle('')
         setFiles(null)
@@ -56,26 +57,26 @@ const CreatePost = (props) => {
   
   const handleSubmit = async (e) => {
   e.preventDefault();
-  
+  setuserSubmissionSuccess('updating');
+
   const formData = new FormData();
   formData.append('title', title);
   for(let i = 0; i < files?.length; i++) {
     formData.append('images', files[i]);
   }
   formData.append('content', content);
-      
-  axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, formData)
-      .then(response => {
-          setuserSubmissionSuccess(true);
-          setuserSubmissionFailure(false);
-          resetForm();
-      })
-      .catch(error => {
-      setuserSubmissionFailure(true);
-      if (error.response && error.response.status === 409) {
-      }
-      console.error(error);
-      });
+  let result = [];
+  try {
+    await axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, formData);
+    setuserSubmissionFailure(false);
+    await Promise.all([result]);
+    resetForm();
+  } catch (error) {
+    setuserSubmissionFailure(true);
+    if (error.response && error.response.status === 409) {
+    }
+    console.error(error);
+  }
   };
 
   return (
@@ -135,6 +136,11 @@ const CreatePost = (props) => {
               {submissionSuccess === true ?
                   <span>
                       Post created
+                  </span>
+                  :
+                  submissionSuccess === 'updating' ?
+                  <span>
+                      Updating post
                   </span>
                   :
                   <span>

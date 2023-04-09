@@ -14,11 +14,12 @@ const EditPost = (props) => {
   function resetForm() {
     props.setSelectedPostId(null)
     setuserSubmissionSuccess(true);
+    setuserSubmissionSuccess(true);
+    props.setSelectedPostId(props.post._id)
     const timer = setTimeout(() => {
-        props.setSelectedPostId(props.post._id)
         setuserSubmissionSuccess('')
-      }, 50);
-      return () => clearTimeout(timer);
+    }, 1000);
+    return () => clearTimeout(timer);
   }
 
   const handleImageChange = (e) => {
@@ -58,32 +59,32 @@ const handleDeleteImage = (post, index, type) => {
     props.updatePost(post, props.post.content, files)
 };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  const formData = new FormData();
-  formData.append('id', props.post._id);
-  formData.append('title', title);
-  for(let i = 0; i < files?.length; i++) {
-    formData.append('images', files[i]);
-  }
-  formData.append('previouslyUploadedImages', savedImages);
-  formData.append('content', content);
-      
-  axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, formData)
-      .then(response => {
-          setuserSubmissionSuccess(true);
-          setuserSubmissionFailure(false);
-          props.updatePost(props.post, title, content, savedImages)
-          resetForm() 
-      })
-      .catch(error => {
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    setuserSubmissionSuccess('updating');
+    const formData = new FormData();
+    formData.append('id', props.post._id);
+    formData.append('title', title);
+    for(let i = 0; i < files?.length; i++) {
+      formData.append('images', files[i]);
+    }
+    formData.append('previouslyUploadedImages', savedImages);
+    formData.append('content', content);
+    let newImages = []; 
+    try {
+      await axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, formData);
+      setuserSubmissionFailure(false);
+      props.updatePost(props.post, title, content, savedImages);
+      await Promise.all([newImages]);
+      resetForm();
+    } catch (error) {
       setuserSubmissionFailure(true);
       if (error.response && error.response.status === 409) {
       }
       console.error(error);
-      });
+    }
   };
+  
   
   return (
     <div className='gap-5 mt-10'>
@@ -158,6 +159,11 @@ const handleDeleteImage = (post, index, type) => {
               {submissionSuccess === true ?
                   <span>
                       Post Updated
+                  </span>
+                  :
+                  submissionSuccess === 'updating' ?
+                  <span>
+                      Updating post
                   </span>
                   :
                   <span>
