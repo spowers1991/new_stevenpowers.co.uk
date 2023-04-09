@@ -137,7 +137,7 @@ const LightBox = (props) => {
                                                         >                                                   
                                                         {post?.images && post?.images.map((image, index) => (
                                                             <SwiperSlide key={index} className="transition duration-300 self-end cursor-pointer bg-[#ccc]">    
-                                                                <img className={`${galleryOrientation === 'vertical' ? 'rotate-90' : 'rotate-0' } object-cover w-full h-full rounded md:min-w-[536px]`} src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
+                                                                <img className={`${galleryOrientation === 'vertical' ? 'rotate-90' : 'rotate-0' } object-cover w-full h-full rounded md:min-w-[536px]`} src={`${image}`} alt="" />
                                                             </SwiperSlide>
                                                         ))}                                           
                                                     </Swiper>
@@ -154,7 +154,7 @@ const LightBox = (props) => {
                                                     >
                                                     {post?.images && post?.images.map((image, index) => (
                                                         <SwiperSlide key={index} className="transition duration-300 self-end cursor-pointer" onClick={() => {swiperGalleryRefs.current[key].slideTo(index); swiperThumbRefs.current[key].slideTo(index);}}>    
-                                                            <img className={`${activeThumb === index ? 'border-2 border-black' : ''} object-cover rounded max-h-[50px] xl:max-h-[100px] w-full`} src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />                                                        
+                                                            <img className={`${activeThumb === index ? 'border-2 border-black' : ''} object-cover rounded max-h-[50px] xl:max-h-[100px] w-full`} src={`${image}`} alt="" />                                                        
                                                         </SwiperSlide>
                                                     ))} 
                                                 </Swiper>

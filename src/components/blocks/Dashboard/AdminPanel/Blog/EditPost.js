@@ -110,7 +110,7 @@ const handleDeleteImage = (post, index, type) => {
                                 X
                             </span>
                         </div>
-                        <img className={`w-[150px] rounded ${image ? 'block' : 'hidden'}`} src={`${process.env.REACT_APP_BASEURL+image}`} alt="" />
+                        <img className={`w-[150px] rounded ${image ? 'block' : 'hidden'}`} src={`${image}`} alt="" />
                     </div>
                 ))
             }

@@ -99,7 +99,7 @@ return (
                 onPageChange={handlePageChange}
             />  
         </div>
-        <LightBox data={filteredData} open={open} key={key} keyValue={key} HandlePopUp={HandlePopUp} SwiperSyncedKeyCallback={SwiperSyncedKeyCallback}/>
+        <LightBox data={useFilter === false ? currentItems : slicedfilteredData} open={open} key={key} keyValue={key} HandlePopUp={HandlePopUp} SwiperSyncedKeyCallback={SwiperSyncedKeyCallback}/>
     </div>         
     )
 }
