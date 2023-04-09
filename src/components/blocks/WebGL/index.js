@@ -75,7 +75,7 @@ const WebGL = () => {
             <div className={`${isLoaded ? 'opacity-0' : 'opacity-100'} fixed w-full h-full  bg-black text-white text-left pointer-events-none duration-[1s] delay-[3s] flex item-center`}>          
                 <span className="m-auto">Loading... ({loadingPercentage}%) </span>     
             </div>
-            <button className={`${fullscreen ? 'block' : 'hidden'} top-20 right-20  fixed drop-shadow-2xl  group  bg-white text-black rounded-xl py-3 px-5 bottom-20 sm:bottom-[unset] text-3xl z-20 hover:bg-white hover:text-black duration-500`} onClick={() => setFullScreen(false)} >
+            <button className={`${fullscreen ? 'block' : 'hidden'} !font-short-stack top-20 right-20  fixed drop-shadow-2xl  group  bg-white text-black rounded-xl py-3 px-5 bottom-20 sm:bottom-[unset] text-3xl z-20 hover:bg-white hover:text-black duration-500`} onClick={() => setFullScreen(false)} >
                 X
                 <div className='bg-black absolute bottom-3 left-0 right-0 m-auto w-full h-[2px] scale-x-[0.25] transform group-hover:scale-x-[60%] transition transition-gpu duration-200'>
 
