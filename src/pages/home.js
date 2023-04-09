@@ -6,7 +6,7 @@ const Home = (props) => {
 
     return (        
         <div>     
-            <Page title="Simple Post Data" caption="Here is some simple post data that we have fetched..." blocks={<PostsGrid postData={props.posts && props.posts}/>}/>
+            <Page title="Blog" caption="Here is a collection of blog posts..." blocks={<PostsGrid postData={props.posts && props.posts}/>}/>
         </div>           
     )
 }
