@@ -47,7 +47,7 @@ const [searchTerm, setSearchTerm] = useState('');
 const [filteredData, setFilteredData] = useState([]);
 
 useEffect(() => {
-    setFilteredData(posts?.filter(post => post?.title.toLowerCase().includes(searchTerm.toLowerCase())));
+    setFilteredData(posts && posts?.filter(post => post?.title.toLowerCase().includes(searchTerm.toLowerCase())));
 }, [searchTerm, posts]);
 
 //Pagination
