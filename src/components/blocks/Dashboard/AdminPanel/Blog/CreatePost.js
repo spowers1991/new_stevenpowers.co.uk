@@ -65,9 +65,9 @@ const CreatePost = (props) => {
     formData.append('images', files[i]);
   }
   formData.append('content', content);
-
+  let result = [];
   try {
-    const result = await axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, formData);
+    await axios.post(`${process.env.REACT_APP_BASEURL}/create-post`, formData);
     setuserSubmissionFailure(false);
     await Promise.all([result]);
     resetForm();

@@ -72,7 +72,7 @@ const handleSubmit = async (e) => {
     formData.append('content', content);
     let newImages = []; 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, formData);
+      await axios.post(`${process.env.REACT_APP_BASEURL}/update-post`, formData);
       setuserSubmissionFailure(false);
       props.updatePost(props.post, title, content, savedImages);
       await Promise.all([newImages]);
