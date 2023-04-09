@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useJwt } from 'react-jwt';
 
 const UserApprove = () => { 
+
+  
+    const token = localStorage.getItem('token');
+    const { decodedToken } = useJwt(token);
 
     const [users, setUsers] = useState([]);
 
@@ -53,7 +58,7 @@ const UserApprove = () => {
     };
 
     return (
-      users.some(user => user.account_level === 'admin') &&
+      (decodedToken?.account_level === 'admin' && users.some(user => user.account_level === 'requested')) &&
       <div className='w-full sm:w-1/3'>
         <div className='border-2 border-black rounded'>        
           <h3 className='font-inter text-lg font-semibold mb-5 bg-black text-white px-5 py-3'>
