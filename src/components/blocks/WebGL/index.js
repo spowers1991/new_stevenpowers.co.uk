@@ -57,7 +57,7 @@ const WebGL = () => {
         <div className={`${fullscreen && 'hidden'} mb-10 text-sm`}>
           <div className="p-3 mb-5 rounded border-black border-2 ">
             Unfortunely, due to a bug in the Unity WebGL compiler we have to initiate a hard refresh of the application to clear all the scripts after leaving the page that Unity is mounted on. Otherwise the WebGL app will take priority over certain keypress event, making them inaccessable to the rest of the app. Unity are
-            aware of the issue and currently there is no fix, this may cause the DOM to judder and should only be a minor inconvenience.
+            aware of the issue but currently there is no fix.
           </div>
           <h3>
             <b>

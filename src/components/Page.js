@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Heading from './utils/Heading'
 import CaptionReveal from './utils/CaptionReveal'
 import { useLocation } from "react-router-dom";
+import Seo from './utils/Seo';
 
 const Page = (props) => {
     const { pathname } = useLocation();
@@ -12,6 +13,7 @@ const Page = (props) => {
 
     return (    
         <div className={`overflow-hidden min-h-[550px] `}>
+            <Seo seo={props.seo} />
             <div className="max-w-5xl mx-auto px-10">
                 <Heading title={props.title}/>
                 <CaptionReveal caption={props.caption} />  
