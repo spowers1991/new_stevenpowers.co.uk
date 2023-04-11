@@ -48,12 +48,7 @@ const Posts = (props) => {
         setCurrentItems(filteredData && filteredData.slice(indexOfFirstItem, indexOfLastItem))
     }, [filteredData, indexOfFirstItem, indexOfLastItem]);
 
-    
-    const removeElement = (index) => {
-        const newElements = [...filteredData];
-        newElements.splice(index, 1);
-        setPosts(newElements);
-    };
+
 
     function handlePageChange(pageNumber) {
         setCurrentPage(pageNumber);
@@ -67,7 +62,10 @@ const Posts = (props) => {
     }
   
     const slicedfilteredData = filteredData && filteredData.slice(0, 8);
-    
+
+    const removeElement = (id) => {
+        setPosts(posts => posts.filter(post => post._id !== id));
+    };
 
     return ( 
         <div>

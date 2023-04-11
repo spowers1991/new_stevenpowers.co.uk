@@ -10,7 +10,7 @@ const DeletePost = (props) => {
     function deletePost(post) {
     axios.delete(`${process.env.REACT_APP_BASEURL}/delete-post/${data.id}`)
         .then(response => {
-        props.removeElement(props.index)
+        props.removeElement(props.post._id)
         })
         .catch(error => {
         if (error.response && error.response.status === 409) {
