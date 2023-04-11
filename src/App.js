@@ -7,6 +7,7 @@ import Home from './pages/home'
 import Contact from './pages/contact'
 import WebGL from './pages/webgl'
 import Account from './pages/account'
+import NotFound from './pages/404';
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
                 <Route path="/" element={<Home />} />              
                 <Route path="/webgl" element={<WebGL /> } />    
                 <Route path="/contact" element={<Contact />}  />  
-                <Route path="/my-account" element={<Account />}  />     
+                <Route path="/my-account" element={<Account />}  />    
+                <Route path="*" element={<NotFound />} /> 
             </Routes>
           </main>
         <Footer />    
